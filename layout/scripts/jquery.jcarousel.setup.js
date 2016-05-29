@@ -30,12 +30,16 @@ $(document).ready(function () {
 
     $('#featured_content').jcarousel({
         scroll: 1,
-        auto: 5, // Sets the time delay between automatic scrolling of the panel
+        auto: 3, // Sets the time delay between automatic scrolling of the panel
         wrap: 'last',
         initCallback: mycarousel_initCallback,
+         itemFallbackDimension: 300,
         // This tells jCarousel NOT to autobuild prev/next buttons
         buttonNextHTML: null,
         buttonPrevHTML: null
     });
+
+
+
 
 });

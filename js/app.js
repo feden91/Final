@@ -25,7 +25,20 @@ views: {
       },
       url: '/menu'
     })
+.state('login', {
+    url: '/login',
+    views: {
+      'principal': {
+        templateUrl: 'templates/templateLogin.html',
+        controller: 'controlLogin'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
 
+  })
 
   //   templateUrl:"Templatemenu.html",
   //   url:'/menu',
@@ -37,12 +50,7 @@ views: {
     url:'/grilla',
     controller:'controlGrilla'
   })
-  .state('login', 
-  {
-    templateUrl:"templatelogin.html",
-    url:'/login',
-    controller:'controlLogin'
-  })
+ 
   .state('alta', 
   {
     templateUrl:"templateusuario.html",
@@ -63,24 +71,24 @@ views: {
 app.controller('controlLogin', function($scope, $http, $auth, $state) {
    $scope.DatoTest="**Login**";
 
-$scope.login=function(){
+// $scope.login=function(){
 
-$auth.login({nombre:$scope.persona.nombre,clave:$scope.persona.clave});
+// $auth.login({nombre:$scope.persona.nombre,clave:$scope.persona.clave});
 
-console.info("datos auth en menu" , $auth.isAuthenticated(), $auth.getPayload());
+// console.info("datos auth en menu" , $auth.isAuthenticated(), $auth.getPayload());
 
-  if($auth.isAuthenticated())
-  {
-    $state.go("alta");
-  }
-  else
-  {
-    $state.go("alta");
-  }
+//   if($auth.isAuthenticated())
+//   {
+//     $state.go("alta");
+//   }
+//   else
+//   {
+//     $state.go("alta");
+//   }
   
 
 
-}
+});
 /*console.info("datos auth en login" , $auth.isAuthenticated(), $auth.getPayload());
 if($auth.isAuthenticated())
 {
@@ -149,7 +157,7 @@ $scope.SalirDelSistema function(){
      $state.go("menu");
    }*/
 
- });
+ 
 
 app.controller('controlMenu', function($scope, $http, $auth,$state) {
   $scope.DatoTest="**Menu**";
