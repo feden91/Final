@@ -39,6 +39,20 @@ views: {
     }
 
   })
+.state('signup', {
+    url: '/signup',
+    views: {
+      'principal': {
+        templateUrl: 'templates/templateSignUp.html',
+        controller: 'controlSignUp'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
 
   //   templateUrl:"Templatemenu.html",
   //   url:'/menu',
@@ -179,6 +193,9 @@ app.controller('controlMenuSuperior', function($scope, $http, $location, $state,
  
 
   });
+app.controller('controlSignUp', function($scope, $http, $location, $state, $auth) {
+
+});
 
 app.controller('controlAlta', function($scope, $http, FileUploader) {
   $scope.DatoTest="**alta**";
