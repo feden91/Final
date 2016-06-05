@@ -1,6 +1,6 @@
 <?php 
 
-include "clases/Personas.php";
+include "clases/Productos.php";
 // $_GET['accion'];
 
 if ( !empty( $_FILES ) ) {
@@ -20,7 +20,7 @@ elseif(isset($_GET['accion']))
 	{
 		$respuesta= array();
 		//$respuesta['listado']=Persona::TraerPersonasTest();
-		$respuesta['listado']=Persona::TraerTodasLasPersonas();
+		$respuesta['listado']=producto::TraerTodasLasPersonas();
 		//var_dump(Persona::TraerTodasLasPersonas());
 		$arrayJson = json_encode($respuesta);
 		echo  $arrayJson;
@@ -75,17 +75,17 @@ else{
 	switch ($respuesta->datos->accion) {
 		case 'borrar':
 			echo"Voy a borrar";
-			Persona::BorrarPersona($respuesta->datos->persona);
+			producto::BorrarProducto($respuesta->datos->producto);
 			break;
 		
 		case 'insertar':
 			echo"Voy a guardar";
-			Persona::InsertarPersona($respuesta->datos->persona);
+			producto::InsertarProducto($respuesta->datos->producto);
 			break;
 
 		case 'modificar':
-			echo"Voy a modificar una persona";
-			$respuesta= Persona::ModificarPersona($respuesta->datos->persona);
+			echo"Voy a modificar un producto";
+			$respuesta= producto::ModificarProducto($respuesta->datos->producto);
 			break;
 
 		default:

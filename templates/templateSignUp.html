@@ -1,17 +1,62 @@
+
 <div class="login-page">
   <div class="form">
    
     <form class="login-form">
     <h2> Registro</h2>
-      <input type="text" placeholder="Nombre"/>
-      <input type="text" placeholder="Localidad"/>
-      <input type="text" placeholder="Dirección"/>
-      <input type="text" placeholder="Dni"/>
-      <input type="text" placeholder="Correo electronico"/>
-      <input type="password" placeholder="Contraseña"/>
+      <input type="text" ng-model="persona.nombre" placeholder="Nombre"/>
+      <input type="text" ng-model="persona.apellido" placeholder="Apellido"/>
+      <input type="text" ng-model="persona.localidad" placeholder="Localidad"/>
+      <input type="text" ng-model="persona.direccion" placeholder="Dirección"/>
+      <input type="text" ng-model="persona.dni" placeholder="Dni"/>
+      <input type="text" ng-model="persona.correo" placeholder="Correo electronico"/>
+      <input type="password" ng-model="persona.clave" placeholder="Contraseña"/>
+        Sexo:
       
+      <input type="radio"
+       ng-model="persona.sexo"
+       value="femenino"
+       [name="sexof"]
+       
+ ></input>
+  Femenino
+            <input type="radio"
+       ng-model="persona.sexo"
+       value="masculino"
+       [name="sexom"]
+       
+ > Masculino</input>
+        <ul>
+        
+            <!-- Muestro los datos de los archivos a cargar -->
+            <input type="file" nv-file-select uploader="uploader" class="btn btn-primary" required multiple/><br/>
+        
+      <h3>
+      <!-- Muestro los datos de los archivos a cargar -->
+          <li ng-repeat="item in uploader.queue">
+            <!-- nombre del archivo -->
+              Archivo: <span ng-bind="item.file.name"></span><br/>
+              <!-- imagen del archivo -->
+              <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+              <!-- boton upload. Lo puedo usar para carar las fotos o crear
+                mi propia funcion y llamar a uploader.uploadAll() -->
+              <!-- <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                <span class="glyphicon glyphicon-upload"></span> Upload
+              </button> -->
 
-      <button>Registrarse</button>
+              <!-- boton cancel -->            
+              <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+              </button>
+
+              <!-- boton remove -->
+              <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                <span class="glyphicon glyphicon-trash"></span> Remove
+              </button>
+          </li>   
+      </h3>
+
+      <button ng-click="Guardar()">Registrarse</button>
       <p class="message">Ya esta registrado? <a ui-sref="login">Identificarse</a></p>
     </form>
   </div>
