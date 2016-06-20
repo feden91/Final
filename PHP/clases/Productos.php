@@ -9,6 +9,7 @@ class Producto
  	public $codigo;
   	public $descripcion;
   	public $stock;
+  	public $precio;
     public $foto;
     
 //--------------------------------------------------------------------------------//
@@ -34,6 +35,10 @@ class Producto
 	public function GetStock()
 	{
 		return $this->stock;
+	}
+	public function GetPrecio()
+	{
+		return $this->precio;
 	}
 	
 	public function GetFoto()
@@ -61,6 +66,10 @@ class Producto
 	{
 		$this->stock = $valor;
 	}
+	public function SetPrecio($valor)
+	{
+		$this->precio = $valor;
+	}
 	public function SetFoto($valor)
 	{
 		$this->foto = $valor;
@@ -75,6 +84,7 @@ class Producto
 			$this->stock = $obj->stock;
 			$this->nombre = $obj->nombre;
 			$this->descripcion = $obj->descripcion;
+			$this->precio = $obj->precio;
 			$this->foto = $obj->foto;
 		}
 	}
@@ -83,7 +93,7 @@ class Producto
 //--TOSTRING	
   	public function ToString()
 	{
-	  	return $this->codigo."-".$this->nombre."-".$this->stock."-".$this->descripcion."-".$this->foto;
+	  	return $this->codigo."-".$this->nombre."-".$this->stock."-".$this->descripcion."-".$this->precio."-".$this->foto;
 	}
 //--------------------------------------------------------------------------------//
 
@@ -103,13 +113,13 @@ class Producto
 					
 	}
 	
-	public static function TraerTodasLasPersonas()
+	public static function TraerTodasLosProductos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
-		$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodasLasPersonas() ");
+		$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodosLosProductos() ");
 		$consulta->execute();			
-		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "persona");	
+		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "producto");	
 		return $arrPersonas;
 	}
 	
@@ -134,7 +144,7 @@ class Producto
 				foto=:foto
 				WHERE id=:id");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();*/ 
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET nombre='$producto->nombre', codigo='$producto->codigo', descripcion='$producto->descripcion', stock='$producto->stock', foto='$producto->foto' WHERE id='$producto->id'");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET nombre='$producto->nombre', codigo='$producto->codigo', descripcion='$producto->descripcion', stock='$producto->stock', precio='$producto->precio',foto='$producto->foto' WHERE id='$producto->id'");
 			// $consulta->bindValue(':id',$persona->id, PDO::PARAM_INT);
 			// $consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
 			// $consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
@@ -161,11 +171,12 @@ class Producto
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (nombre,apellido,dni,foto)values(:nombre,:apellido,:dni,:foto)");
-		$consulta =$objetoAccesoDato->RetornarConsulta("CALL InsertarProducto (:nombre,:codigo,:descripcion,:stock,:foto)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("CALL InsertarProducto (:nombre,:codigo,:descripcion,:stock,:precio,:foto)");
 		$consulta->bindValue(':nombre',$producto->nombre, PDO::PARAM_STR);
 		$consulta->bindValue(':codigo', $producto->codigo, PDO::PARAM_STR);
 		$consulta->bindValue(':descripcion', $producto->descripcion, PDO::PARAM_STR);
 		$consulta->bindValue(':stock', $producto->stock, PDO::PARAM_STR);
+		$consulta->bindValue(':precio', $producto->stock, PDO::PARAM_STR);
 	    $consulta->bindValue(':foto', $producto->foto, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();

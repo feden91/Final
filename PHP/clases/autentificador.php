@@ -1,59 +1,35 @@
 <?php
 
-include_once 'JWT.php';
-include_once 'ExpiredException.php';
-include_once 'BeforeValidException.php';
-include_once 'SignatureInvalidException.php';
+ include_once '../PHP/JWT.php';
+    include_once '../PHP/ExpiredException.php';
+    include_once '../PHP/BeforeValidException.php';
+    include_once '../PHP/SignatureInvalidException.php';
+
+    $objDatos = json_decode($request->getBody());
+
+    $objetoAccesoDato= AccesoDatos::dameUnObjetoAcceso();
+    $consulta=$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE correo='$objDatos->correo' AND clave='$objDatos->clave'");
+    $consulta->execute();
+    $idUsuario=$consulta->fetchObject('usuario');
 
 
-$objDatos=json_decode(file_get_contents("php://input"));
+    if($objDatos->correo==$idUsuario->correo && $objDatos->clave==$idUsuario->clave)
+    {
+        $token=array(
+            "correo"=>$idUsuario->correo,
+            "apellido"=>$idUsuario->apellido,
+            "nombre"=>$idUsuario->nombre,
+            "dni"=>$idUsuario->dni,
+            "clave"=>$idUsuario->clave,
+            "exp"=>time() + 96000
+        );
 
-$idUsuario=persona::validarusuario($objDatos->nombre, $objDatos->clave); // devuelve id o flase si esta mal
+        $token = Firebase\JWT\JWT::encode($token, 'clave');
 
- //if($objDatos->usuario=="pepito" && $objDatos->clave=="666")
- //{
- 	//$idUsuario=1;
- //}
+        $array['tokenFest2016']=$token;
 
-
-
-/*if($idUsuario==false)
-{
- 	$token=array(
-
-	"id"=> "666",*/
-// 	"nombre"=>"natalia",
-// 	"perfil"=>"natalia",
-// 	"exp"=>time() - 96000
-// 	);
-
-// 	$token = Firebase\JWT\JWT::encode($token, 'clave');
-
-// 	$array['tokenTest2016']=$token;
-
-// 	echo json_encode($array);	
-// }else
-// {
-// 	$token=array(
-
-// 	"id"=> "666",
-// 	"nombre"=>"Jeremias",
-// 	"perfil"=>"Administrador",
-// 	"exp"=>time() + 96000
-// 	);
- 	/*$token = Firebase\JWT\JWT::encode($token, 'clave');
-
-	$array['tokenTest2016']=$token;
-
-	echo json_encode($array);	 }
-
-*/
-
-// 1- tomo dtos del http
-// 2- verifico con un metodo de la clase usuario si son datos validos
-// 3- de ser valido creo el token y lo retorno (Es lo que esta arriba)
-
-
-
+        $response->write(json_encode($array));
+        return $response;
+    
 
 ?>

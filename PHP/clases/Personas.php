@@ -10,7 +10,9 @@ class Persona
   	public $dni;
   	public $foto;
     public $clave;
-    public $sexo;
+    public $correo;
+    public $direccion;
+    public $localidad;
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
@@ -35,9 +37,15 @@ class Persona
 	{
 		return $this->clave;
 	}
-	public function GetSexo()
+	public function GetCorreo()
 	{
-		return $this->sexo;
+		return $this->correo;
+	}public function GetDireccion()
+	{
+		return $this->clave;
+	}public function Getlocalidad()
+	{
+		return $this->clave;
 	}
 	public function GetFoto()
 	{
@@ -60,10 +68,7 @@ class Persona
 	{
 		$this->clave = $valor;
 	}
-	public function SetSexo($valor)
-	{
-		$this->sexo = $valor;
-	}
+	
 	public function SetDni($valor)
 	{
 		$this->dni = $valor;
@@ -71,6 +76,18 @@ class Persona
 	public function SetFoto($valor)
 	{
 		$this->foto = $valor;
+	}
+	public function SetCorreo($valor)
+	{
+		$this->correo = $valor;
+	}
+	public function SetDireccion($valor)
+	{
+		$this->direccion = $valor;
+	}
+	public function SetLocalidad($valor)
+	{
+		$this->localidad = $valor;
 	}
 //--------------------------------------------------------------------------------//
 //--CONSTRUCTOR
@@ -83,8 +100,10 @@ class Persona
 			$this->nombre = $obj->nombre;
 			$this->clave = $obj->clave;
 			$this->dni = $dni;
-			$this->sexo = $sexo;
-			$this->foto = $obj->foto;
+			$this->correo = $correo;
+			$this->direccion = $direccion;
+			$this->localidad = $localidad;
+			
 		}
 	}
 
@@ -92,7 +111,7 @@ class Persona
 //--TOSTRING	
   	public function ToString()
 	{
-	  	return $this->apellido."-".$this->nombre."-".$this->clave."-".$this->sexo."-".$this->dni."-".$this->foto;
+	  	return $this->apellido."-".$this->nombre."-".$this->clave."-".$this->dni."-".$this->foto."-".$this->correo."-".$this->direccion."-".$this->localidad;
 	}
 //--------------------------------------------------------------------------------//
 
@@ -111,7 +130,28 @@ class Persona
 		return $personaBuscada;	
 					
 	}
-	
+	public static function CheckearPersona($correo, $clave) 
+	{	
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario where correo =:correo AND clave =:clave");
+		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnaPersona(:id)");
+		$consulta->bindParam(':correo', $correo);
+		$consulta->bindParam(':clave', $clave);
+		$consulta->execute();
+		$result = $consulta->fetchAll();
+		//$usuarioBuscado= $consulta->fetchObject('persona');
+		//return $usuarioBuscado;	
+		
+		if ($result) {
+			//print("SIIII LA REPUTA!");
+			return true;
+		}
+		else{
+			//print("NOOOOO LA REPUTA!");
+			return false;
+		}
+	}
+
 	public static function TraerTodasLasPersonas()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -143,7 +183,7 @@ class Persona
 				foto=:foto
 				WHERE id=:id");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();*/ 
-			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE persona SET nombre='$persona->nombre', apellido='$persona->apellido', clave='$persona->clave', sexo='$persona->sexo', foto='$persona->foto' WHERE id='$persona->id'");
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE persona SET nombre='$persona->nombre', apellido='$persona->apellido', clave='$persona->clave',  foto='$persona->foto',  correo='$persona->correo',  localidad='$persona->localidad' ,  direccion='$persona->direccion'WHERE id='$persona->id'");
 			// $consulta->bindValue(':id',$persona->id, PDO::PARAM_INT);
 			// $consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
 			// $consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
@@ -170,12 +210,16 @@ class Persona
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (nombre,apellido,dni,foto)values(:nombre,:apellido,:dni,:foto)");
-		$consulta =$objetoAccesoDato->RetornarConsulta("CALL InsertarPersona (:nombre,:apellido,:clave,:sexo,:dni,:foto)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("CALL InsertarPersona (:nombre,:apellido,:localidad,:direccion,:dni,:correo,:clave,:foto)");
 		$consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
 		$consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
-		$consulta->bindValue(':clave', $persona->clave, PDO::PARAM_STR);
-		$consulta->bindValue(':sexo', $persona->sexo, PDO::PARAM_STR);
+		$consulta->bindValue(':localidad', $persona->localidad, PDO::PARAM_STR);
+		$consulta->bindValue(':direccion', $persona->direccion, PDO::PARAM_STR);
 		$consulta->bindValue(':dni', $persona->dni, PDO::PARAM_STR);
+		$consulta->bindValue(':correo', $persona->correo, PDO::PARAM_STR);
+		
+		$consulta->bindValue(':clave', $persona->clave, PDO::PARAM_STR);
+		
 		$consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();

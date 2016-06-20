@@ -6,9 +6,9 @@
   <div class="form">
    
     <form class="login-form">
-      <input type="email" placeholder="Correo Electronico"/>
-      <input type="password" placeholder="Contraseña"/>
-      <button>Ingresar</button>
+      <input type="email" ng-model="correo"placeholder="Correo Electronico"/>
+      <input type="password" ng-model="clave" placeholder="Contraseña"/>
+      <button ng-click="Entrar()">Ingresar</button>
       <p class="message">No esta registrado? <a ui-sref="signup">Crear una cuenta</a></p>
     </form>
   </div>
