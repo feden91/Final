@@ -1,75 +1,76 @@
-app.controller('controlGrilla', function($scope, $http) {
-  	$scope.DatoTest="**grilla**";
+app.controller('controlGrilla', function($scope, $http,factoryProducto) {
+
  	
-    function bien(respuesta)
-    {
-        $scope.ListadoProductos = respuesta.data.listado;
-        console.log(respuesta.data);
-    }
-
-    function mal(respuesta)
-    {
-        $scope.ListadoProductos= [];
-        console.log( response);
-    }
-
-  $http.get('PHP/nexo.php', { params: {accion :"traer"}})
-  .then(bien, mal);
-
- 	$scope.Borrar=function(producto){
-		console.log("borrar"+producto);
+    factoryProducto.mostrarGrilla("otro").then(function(respuesta){
+    $scope.ListadoProductos=respuesta;
+  });
 
 
 
-$http.post("PHP/nexo.php",{datos:{accion :"borrar",producto:producto}},{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
- .then(function(respuesta) {       
-         //aca se ejetuca si retorno sin errores        
-         console.log(respuesta.data);
+$scope.Borrar=function(usuario){
 
+    console.log(usuario);
 
-        $http.get('PHP/nexo.php', { params: {accion :"traer"}})
-  .then(function(respuesta) {       
+    var data = producto.codigo;
+    
+    $http.delete('http://localhost/final/Datos/BorrarProducto/' +data)
+   .then(function(respuesta) {       
+           //aca se ejetuca si retorno sin errores        
+           console.log(respuesta.data);
+           // $http.get('http://localhost/PersonasFinal/Datos/traerUsuarios/')
+           // .then(bien, mal);
 
-         $scope.ListadoProductos = respuesta.data.listado;
-         console.log(respuesta.data);
+             factoryProducto.mostrarGrilla("otro").then(function(respuesta){
+              $scope.ListadoProductos=respuesta;
+             });
 
-    },function errorCallback(response) {
-         $scope.ListadoProductos= [];
-        console.log( response);
-   });
-
-
-    },function errorCallback(response) {        
-        //aca se ejecuta cuando hay errores
-        console.log( response);           
-    });
-
-/*
-     $http.post('PHP/nexo.php', 
-      headers: 'Content-Type': 'application/x-www-form-urlencoded',
-      params: {accion :"borrar",persona:persona})
-    .then(function(respuesta) {       
-         //aca se ejetuca si retorno sin errores        
-         console.log(respuesta.data);
-
-    },function errorCallback(response) {        
-        //aca se ejecuta cuando hay errores
-        console.log( response);           
-    });
-
-*/
- 	}
+      },function errorCallback(response) {
+           $scope.ListadoProductos= [];
+          console.log( response);
+     });
+}
+});
 
 
 
 
- 	$scope.Modificar=function(id){
- 		
- 		console.log("Modificar"+id);
- 	}
 
 
 
+
+
+app.factory('factoryProducto',function(servicioProducto){
+
+    var producto={
+      // nombre:'Leandro',
+      // nombreApellido:'Leandro Cannarozzi',
+      mostrarGrilla:function(dato){
+          this.nombre=dato;
+          return servicioProducto.retornarProductos().then(function(respuesta){
+                  return respuesta;
+
+          });
+          //console.log("Este es mi nombre: "+dato);
+      }
+  };
+    return producto;
+});
+
+app.service('servicioProducto',function($http){
+var listado;
+
+  this.retornarProductos=function(){
+      return  $http.get('http://localhost/final/Datos/traerProductos/')
+        .then(function(respuesta) {       
+
+          //$scope.ListadoPersonas = respuesta.data.listado;
+          return respuesta.data.listado;
+
+         //console.log(respuesta.data);
+
+      });
+
+  };
 
 
 });

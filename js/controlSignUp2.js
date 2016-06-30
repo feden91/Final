@@ -1,9 +1,9 @@
-app.controller('controlAltaProducto', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos) {
+app.controller('controlSignUp', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos) {
 
   $scope.uploader = new FileUploader({url: 'nexoUsuario.php'});
   $scope.uploader.queueLimit = 1;
-      $scope.producto={};
-    $scope.producto.foto="pordefecto.png";
+      $scope.usuario={};
+    $scope.usuario.foto="pordefecto.png";
 
   // $scope.cargarFoto=function(nombreDeFoto){
 
@@ -23,17 +23,17 @@ app.controller('controlAltaProducto', function($scope, $http, FileUploader, $sta
   //   );
   // }
 
-  serviceCargadorDeFotos.cargarFoto($scope.producto.foto, $scope.uploader);
+  serviceCargadorDeFotos.cargarFoto($scope.usuario.foto, $scope.uploader);
 
-  //$scope.cargarFoto($scope.producto.Foto);
+  //$scope.cargarFoto($scope.usuario.Foto);
 
   $scope.uploader.onSuccessItem= function(item, response, status, headers) {
 
   console.info("Voy a guardar", item, response,status, headers);
 
   console.log("persona a guardar:");
-  console.log($scope.producto);
-  $http.post('http://localhost/final/Datos/AltaProductos/', { datos: {accion:"altaProducto",producto:$scope.producto}})
+  console.log($scope.usuario);
+  $http.post('http://localhost/final/Datos/AltaUsuarios/', { datos: {accion:"signup",usuario:$scope.usuario}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta.data);
@@ -51,7 +51,7 @@ app.controller('controlAltaProducto', function($scope, $http, FileUploader, $sta
   if($scope.uploader.queue[0].file.name!='pordefecto.png')
   {
     var nombrefoto=$scope.uploader.queue[0].file.name;
-    $scope.producto.foto=nombrefoto;
+    $scope.usuario.Foto=nombrefoto;
   }
   $scope.uploader.uploadAll();
   }

@@ -5,8 +5,8 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider){
 
   //  $authProvider.loginUrl = 'http://localhost/final/Datos/Login/';
   // $authProvider.signupUrl = 'http://localhost/final/Datos/Login/';
-  $authProvider.loginUrl = 'final/PHP/Sesiones/autentificador.php'; //"http://api.com/auth/login";
-  $authProvider.signupUrl = 'final/PHP/Sesiones/CrearCuenta.php'; //"http://api.com/auth/signup";
+   $authProvider.loginUrl = 'http://localhost/final/Datos/Login/'; //"http://api.com/auth/login";
+  $authProvider.signupUrl = 'http://localhost/final/Datos/Login/'; //"http://api.com/auth/signup";
  $authProvider.tokenName = 'tokenFest2016';
   $authProvider.tokenPrefix = 'login';
   $authProvider.authHeader = 'Data';
@@ -56,12 +56,28 @@ views: {
     }
 
   })
+.state('logout', {
+    url: '/logout',
+    views: {
+      'principal': {
+        
+        controller: 'controlLogout'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
+
+
 .state('altaProducto', {
     url: '/altaProducto',
     views: {
       'principal': {
         templateUrl: 'templates/templateAltaProducto.html',
-        controllerUrl:'js/controlaltaproducto.js',
+        controllerUrl:'js/controlaltaproductos.js',
         controller: 'controlAltaProducto'
       },
       'menuSuperior': {
@@ -72,6 +88,21 @@ views: {
 
   })
 
+.state('verProducto', {
+    url: '/verProducto/{:codigo}?:nombre:stock:descripcion:precio:foto',
+    views: {
+      'principal': {
+        templateUrl: 'templates/templateProducto.html',
+        controllerUrl:'js/controlProducto.js',
+        controller: 'controlProducto'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
 
  .state('grilla', 
   {  url: '/grilla',
@@ -86,20 +117,20 @@ views: {
           controller: 'controlMenuSuperior'
       }}
   })
-  .state('alt', 
-  {  url: '/alt',
+  
+ .state('modificarProducto', 
+  {  url: '/modificarProducto/{:codigo}?:nombre:stock:descripcion:precio:foto',
     views: {
       'principal': {
-    templateUrl:"templates/templateatl.html",
+    templateUrl:"templates/templateAltaProducto.html",
     
-    controller:'controlalt'},
+    controller:'controlModificar'},
 
     'menuSuperior': {
         templateUrl: 'templates/menuSuperior.html',
           controller: 'controlMenuSuperior'
       }}
-  })/*
-  .state('alta', 
+  })/* .state('alta', 
   {
     templateUrl:"templateusuario.html",
     url:'/alta',

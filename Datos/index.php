@@ -4,15 +4,16 @@
 require '../vendor/autoload.php';
 
 //Clases
-require '../PHP/usuarios.php';
-require '../PHP/AccesoDatos.php';
+require '../PHP/clases/usuarios.php';
+require '../PHP/clases/AccesoDatos.php';
 
+require '../PHP/clases/Productos.php';
 
 $app = new Slim\App();
 
 // INICIO USUARIOS
-$app->get('/traerUsuarios[/]', function ($request, $response, $args) {
-	$listado['listado']= usuario::TraerTodosLosUsuarios();
+$app->get('/traerProductos[/]', function ($request, $response, $args) {
+	$listado['listado']= producto::TraerTodasLosProductos();
     $response->write(json_encode($listado));
     return $response;
 });
@@ -24,52 +25,69 @@ $app->post('/AltaUsuarios[/]', function($request, $response, $args){
 
 	$response->write(var_dump($unaPersona));
 });
-
-$app->put('/ModificarUsuarios[/]', function($request, $response, $args){
+$app->post('/AltaProductos[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
-    $unaPersona= usuario::ModificarUnUsuario($respuesta->datos->usuario);
+    var_dump('helou');
+    $unProducto= Producto::InsertarProducto($respuesta->datos->producto);
 
-    $response->write(var_dump($unaPersona));
+    $response->write(var_dump($unProducto));
 });
+
+$app->put('/ModificarProductos[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    $unProducto= Producto::ModificarProducto($respuesta->datos->producto);
+
+    $response->write(var_dump($unProducto));
+});
+$app->put('/Producto[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    $unProducto= Producto::TraerUnaPersona($respuesta->datos->producto);
+
+    $response->write(var_dump($unProducto));
+});
+
 
 $app->post('/Login[/]', function($request, $response, $args){
     
-    include_once '../PHP/JWT.php';
-    include_once '../PHP/ExpiredException.php';
-    include_once '../PHP/BeforeValidException.php';
-    include_once '../PHP/SignatureInvalidException.php';
+    include_once '../PHP/Sesiones/JWT.php';
+    include_once '../PHP/Sesiones/ExpiredException.php';
+    include_once '../PHP/Sesiones/BeforeValidException.php';
+    include_once '../PHP/Sesiones/SignatureInvalidException.php';
 
     $objDatos = json_decode($request->getBody());
 
     $objetoAccesoDato= AccesoDatos::dameUnObjetoAcceso();
-    $consulta=$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuarios WHERE Dni='$objDatos->dni' AND Clave='$objDatos->clave'");
+    $consulta=$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario WHERE correo='$objDatos->correo' AND clave='$objDatos->clave'");
     $consulta->execute();
     $idUsuario=$consulta->fetchObject('usuario');
 
 
-    if($objDatos->dni==$idUsuario->Dni && $objDatos->clave==$idUsuario->Clave)
+    if($objDatos->correo==$idUsuario->correo && $objDatos->clave==$idUsuario->clave)
     {
         $token=array(
-            "dni"=>$idUsuario->Dni,
-            "apellido"=>$idUsuario->Apellido,
-            "nombre"=>$idUsuario->Nombres,
-            "clave"=>$idUsuario->Clave,
+            "dni"=>$idUsuario->dni,
+            "correo"=>$idUsuario->correo,
+            "localidad"=>$idUsuario->localidad,
+            "direccion"=>$idUsuario->direccion,
+            "apellido"=>$idUsuario->apellido,
+            "nombre"=>$idUsuario->nombre,
+            "clave"=>$idUsuario->clave,
             "exp"=>time() + 96000
         );
 
         $token = Firebase\JWT\JWT::encode($token, 'clave');
 
-        $array['tokenFest2016']=$token;
+        $array['tokenFest2016']=$token; 
 
         $response->write(json_encode($array));
         return $response;
     }
 });
 
-$app->delete('/BorrarUsuario/{data}', function($request, $response, $args){
+$app->delete('/BorrarProducto/{data}', function($request, $response, $args){
     
     var_dump($args['data']); //Trae el dato
-    $unaPersona= usuario::BorrarUnUsuario($args['data']);
+    $unaPersona= Producto::BorrarProducto($args['data']);
     $response->write($args['data']);
 });
 

@@ -1,6 +1,5 @@
 app.controller('controlLogin', function($scope, $http, $auth, $state) {
-   $scope.DatoTest="**Login**";
- if($auth.isAuthenticated())
+  if($auth.isAuthenticated())
   {
     $state.go('grilla');
   }
@@ -22,7 +21,7 @@ app.controller('controlLogin', function($scope, $http, $auth, $state) {
         }
         else
         {
-          alert("Error de  datos, favor de verificar");
+          alert("Error de  datos, favor de verificar correo y contraseña");
         } 
       })
       .catch(function(parametro){
@@ -30,7 +29,6 @@ app.controller('controlLogin', function($scope, $http, $auth, $state) {
       });
     }    
   }
-  
 
 
 });
