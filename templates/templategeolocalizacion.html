@@ -1,3 +1,5 @@
+ <div class="form2 form2-responsive">
+Podes visitarnos en nuestro local en la localidad de avellaneda calle alsina 123
 <section id="wrapper">
 
 
@@ -6,7 +8,7 @@
 
     <article>
 
-      <p><span id="status">Please wait whilst we try to locate you...</span></p>
+      <p><span id="status"></span></p>
 
     </article>
 
@@ -25,8 +27,6 @@ function success(position) {
   }
 
 
-
-  s.innerHTML = "found you!";
 
   s.className = 'success';
 
@@ -52,7 +52,7 @@ function success(position) {
 
     zoom: 15,
 
-    center: latlng,
+    center: new google.maps.LatLng(-34.6625462,-58.36490035),
 
     mapTypeControl: false,
 
@@ -66,15 +66,15 @@ function success(position) {
 
 
 
-  var marker = new google.maps.Marker({
+  // var marker = new google.maps.Marker({
 
-      position: latlng,
+  //     position: latlng,
 
-      map: map,
+  //     map: map,
 
-      title:"You are here!"
+  //     title:"You are here!"
 
-  });
+  // });
 
 }
 
@@ -111,3 +111,16 @@ if (navigator.geolocation) {
 </script>
 
 </section>
+
+<script>
+function iniciar() {
+var mapOptions = {
+center: new google.maps.LatLng(25.80, -80.30),
+zoom: 10,
+mapTypeId: google.maps.MapTypeId.ROADMAP};
+var map = new google.maps.Map(document.getElementById("map"),mapOptions);}              
+</script>
+
+<div id="map"></div>
+
+</div>

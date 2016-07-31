@@ -1,5 +1,12 @@
-app.controller('controlGrilla', function($scope, $http,factoryProducto) {
+app.controller('controlGrilla', function($scope, $http,factoryProducto,$auth) {
+if($auth.isAuthenticated())
+  {
+    $scope.usuarioLogeado=$auth.getPayload();
 
+  }
+
+  
+  console.log($scope.usuarioLogeado);
  	
     factoryProducto.mostrarGrilla("otro").then(function(respuesta){
     $scope.ListadoProductos=respuesta;

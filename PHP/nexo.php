@@ -88,6 +88,21 @@ else{
 			$respuesta= producto::ModificarProducto($respuesta->datos->producto);
 			break;
 
+		case 'borrarc':
+			echo"Voy a borrar";
+			compra::BorrarCompra($respuesta->datos->producto);
+			break;
+		
+		case 'insertar':
+			echo"Voy a guardar";
+			compra::InsertarCompra($respuesta->datos->compra);
+			break;
+
+		case 'modificar':
+			echo"Voy a modificar un producto";
+			$respuesta= compra::ModificarCompra($respuesta->datos->producto);
+			break;
+
 case 'borraru':
 			echo"Voy a borrar";
 			persona::BorrarPersona($respuesta->datos->persona);

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+/*$(document).ready(function () {
 
     function mycarousel_initCallback(carousel) {
         $('#featured-item-next').bind('click', function () {
@@ -42,4 +42,4 @@ $(document).ready(function () {
 
 
 
-});
+});*/

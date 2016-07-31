@@ -6,10 +6,11 @@
      
 <h1> {{producto.nombre}}</h1>
 <div></div>
-<h1><img  class='foto'width="178" height="180"  ng-src="fotos/{{producto.foto}}" /></h1>
+<center><img  class='foto'width="178" height="180"  ng-src="fotos/{{producto.foto}}" /></center>
  
 <h1>{{producto.descripcion}}</h1>
 <h1>${{producto.precio}}</h1>
-<button>Comprar</button>
+
+<button ui-sref='confirmarCompra({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto})'>Agregar a carrito</button>
 
 </div>

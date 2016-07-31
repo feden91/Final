@@ -1,19 +1,18 @@
-app.controller('controlSignUp', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos,$auth) {
-if($auth.isAuthenticated())
+app.controller('controlCompra', function($scope,$stateParams, $http,$auth, serviceCargadorDeFotos, FileUploader, $state) {
+
+
+      
+ if($auth.isAuthenticated())
   {
     $scope.usuarioLogeado=$auth.getPayload();
 
   }
 
+  $scope.compra={};
+  $scope.compra.codigo=$scope.producto.codigo ;
   
-  console.log($scope.usuarioLogeado);
-
-  $scope.uploader = new FileUploader({url: 'nexoUsuario.php'});
-  $scope.uploader.queueLimit = 1;
-      $scope.usuario={};
-      $scope.usuario.tipo="Cliente";
-    $scope.usuario.foto="pordefecto.png";
-
+$scope.compra.fecha= $stateParams.fecha ;
+  $scope.compra.dni= $scope.usuarioLogeado.dni;
   // $scope.cargarFoto=function(nombreDeFoto){
 
   //   var direccion="fotos/"+nombreDeFoto;
@@ -32,20 +31,20 @@ if($auth.isAuthenticated())
   //   );
   // }
 
-  serviceCargadorDeFotos.cargarFoto($scope.usuario.foto, $scope.uploader);
+  
 
-  //$scope.cargarFoto($scope.usuario.Foto);
+  //$scope.cargarFoto($scope.producto.Foto);
 
-  $scope.uploader.onSuccessItem= function(item, response, status, headers) {
+ $scope.Guardar= function(item, response, status, headers) {
 
   console.info("Voy a guardar", item, response,status, headers);
 
-  console.log("persona a guardar:");
-  console.log($scope.usuario);
-  $http.post('http://localhost/final/Datos/AltaUsuarios/', { datos: {accion:"signup",usuario:$scope.usuario}})
+  console.log("compra a guardar:");
+  console.log($scope.compra);
+  $http.post('http://localhost/final/Datos/AltaCompras/', { datos: {accion:"altaCompra",compra:$scope.compra}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
-    console.log(respuesta.data);
+    console.log(respuesta);
     alert("Se ha ingresado correctamente");
     $state.go('grilla');
 
@@ -55,14 +54,14 @@ if($auth.isAuthenticated())
     });
   }
 
-  $scope.Guardar=function(){
+  //  $scope.Guardar=function(){
 
-  if($scope.uploader.queue[0].file.name!='pordefecto.png')
-  {
-    var nombrefoto=$scope.uploader.queue[0].file.name;
-    $scope.usuario.Foto=nombrefoto;
-  }
-  $scope.uploader.uploadAll();
-  }
+  // // if($scope.uploader.queue[0].file.name!='pordefecto.png')
+  // // {
+  // //   var nombrefoto=$scope.uploader.queue[0].file.name;
+  // //   $scope.producto.foto=nombrefoto;
+  // // }
+  // // $scope.uploader.uploadAll();
+  // }
 
 });

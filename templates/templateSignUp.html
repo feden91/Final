@@ -10,14 +10,21 @@
       <input type="text" ng-model="usuario.direccion" placeholder="Dirección"/>
       <input type="text" ng-model="usuario.dni" placeholder="Dni"/>
       <input type="text" ng-model="usuario.correo" placeholder="Correo electronico"/>
+      <div ng-if="usuarioLogeado.tipo=='Administrador'">
+      <select ng-model="usuario.tipo"  placeholder="Tipo de usuario">
+        <option>Administrador</option>
+        <option>Empleado</option>
+        <option>Cliente</option>
+      </select>
+      </div>
       <input type="password" ng-model="usuario.clave" placeholder="Contraseña"/>
       
-        <ul>
+  
         
-            <!-- Muestro los datos de los archivos a cargar -->
+           <center> <!-- Muestro los datos de los archivos a cargar -->
             <input type="file" nv-file-select uploader="uploader" ng-show="!uploader.queue[0]" class="btn btn-primary" ng-model="usuario.foto" required multiple/><br/>
                   
-                <ul>
+    
                 <!-- Muestro los datos de los archivos a cargar -->
                     <li ng-repeat="item in uploader.queue">
                       <!-- nombre del archivo -->
@@ -31,12 +38,12 @@
                         </button> -->
 
                         <!-- boton remove -->
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                          <span class="glyphicon glyphicon-trash"></span> Remove
+                        <button  ng-click="item.remove()">
+                          Cambiar Foto
                         </button>
                     </li> 
                   </ul>
-
+</center>
       <button ng-click="Guardar()">Registrarse</button>
       <p class="message">Ya esta registrado? <a ui-sref="login">Identificarse</a></p>
     </form>

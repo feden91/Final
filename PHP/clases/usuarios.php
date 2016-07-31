@@ -11,7 +11,8 @@ class usuario
     public $correo;
     public $direccion;
     public $localidad;
-	
+	public $tipo;
+
 			public function GetId()
 	{
 		return $this->id;
@@ -116,7 +117,7 @@ class usuario
 	public static function InsetarUnUsuario($usuario)
 	{
 		$objetoAccesoDato=AccesoDatos::dameUnObjetoAcceso();
-		$consulta=$objetoAccesoDato->RetornarConsulta("INSERT into usuario (dni,apellido,nombre,foto,clave,correo,direccion,localidad) VALUES ('$usuario->dni', '$usuario->apellido','$usuario->nombre','$usuario->foto','$usuario->clave','$usuario->correo','$usuario->direccion','$usuario->localidad')");
+		$consulta=$objetoAccesoDato->RetornarConsulta("INSERT into usuario (dni,apellido,nombre,foto,clave,correo,direccion,localidad,tipo) VALUES ('$usuario->dni', '$usuario->apellido','$usuario->nombre','$usuario->foto','$usuario->clave','$usuario->correo','$usuario->direccion','$usuario->localidad','$usuario->tipo')");
 		$consulta->execute();
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();				
 	}	

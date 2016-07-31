@@ -1,18 +1,9 @@
-app.controller('controlSignUp', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos,$auth) {
-if($auth.isAuthenticated())
-  {
-    $scope.usuarioLogeado=$auth.getPayload();
-
-  }
-
-  
-  console.log($scope.usuarioLogeado);
+app.controller('controlAltaProducto', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos) {
 
   $scope.uploader = new FileUploader({url: 'nexoUsuario.php'});
   $scope.uploader.queueLimit = 1;
-      $scope.usuario={};
-      $scope.usuario.tipo="Cliente";
-    $scope.usuario.foto="pordefecto.png";
+      $scope.producto={};
+    $scope.producto.foto="pordefecto.png";
 
   // $scope.cargarFoto=function(nombreDeFoto){
 
@@ -32,17 +23,17 @@ if($auth.isAuthenticated())
   //   );
   // }
 
-  serviceCargadorDeFotos.cargarFoto($scope.usuario.foto, $scope.uploader);
+  serviceCargadorDeFotos.cargarFoto($scope.producto.foto, $scope.uploader);
 
-  //$scope.cargarFoto($scope.usuario.Foto);
+  //$scope.cargarFoto($scope.producto.Foto);
 
   $scope.uploader.onSuccessItem= function(item, response, status, headers) {
 
   console.info("Voy a guardar", item, response,status, headers);
 
   console.log("persona a guardar:");
-  console.log($scope.usuario);
-  $http.post('http://localhost/final/Datos/AltaUsuarios/', { datos: {accion:"signup",usuario:$scope.usuario}})
+  console.log($scope.producto);
+  $http.post('http://localhost/final/Datos/AltaProductos/', { datos: {accion:"altaProducto",producto:$scope.producto}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta.data);
@@ -60,7 +51,7 @@ if($auth.isAuthenticated())
   if($scope.uploader.queue[0].file.name!='pordefecto.png')
   {
     var nombrefoto=$scope.uploader.queue[0].file.name;
-    $scope.usuario.Foto=nombrefoto;
+    $scope.producto.foto=nombrefoto;
   }
   $scope.uploader.uploadAll();
   }

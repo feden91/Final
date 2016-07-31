@@ -1,0 +1,1 @@
+app.controller('controlContacto', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos) {});

@@ -10,7 +10,7 @@
       <textarea ng-model="producto.descripcion" placeholder="Descripcion" rows="7" cols="37"></textarea>
       
      
-        <ul>
+
             <!-- Muestro los datos de los archivos a cargar -->
             <li ng-repeat="item in uploader.queue">
                <!-- nombre del archivo -->
@@ -32,7 +32,7 @@
                <!-- boton remove -->
                <button type="button" class="btn btn-danger " ng-click="item.remove()">cambiar</button>
             </li>
-         </ul>
+       
          <input type="file" ng-show="!uploader.queue[0] "nv-file-select uploader="uploader"/>.
          
          <input type="hidden" value="" id="idParaModificar" name="agregar" />

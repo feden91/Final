@@ -87,14 +87,77 @@ views: {
     }
 
   })
+.state('rodados', {
+    url: '/rodados',
+    views: {
+      'principal': {
+        templateUrl: 'templates/templateRodados.html',
+        controllerUrl:'js/controlRodados.js',
+        controller: 'controlRodados'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
+// .state('compra', {
+//     url: '/compra//{:codigo}?:dni:fecha',
+//     views: {
+//       'principal': {
+//         templateUrl: 'templates/compra.html',
+//         controllerUrl:'js/controlCompra.js',
+//         controller: 'controlCompra'
+//       },
+//       'menuSuperior': {
+//         templateUrl: 'templates/menuSuperior.html',
+//           controller: 'controlMenuSuperior'
+//       }
+//     }
+
+//   })
 
 .state('verProducto', {
-    url: '/verProducto/{:codigo}?:nombre:stock:descripcion:precio:foto',
+    url: '/verProducto//{:codigo}?:nombre:stock:descripcion:precio:foto',
     views: {
       'principal': {
         templateUrl: 'templates/templateProducto.html',
         controllerUrl:'js/controlProducto.js',
         controller: 'controlProducto'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
+
+.state('confirmarCompra', {
+    url: '/confirmarCompra//{:codigo}?',
+    views: {
+      'principal': {
+        templateUrl: 'templates/confirmarCompra.html',
+        controllerUrl:'js/controlProducto2.js',
+        controller: 'controlProducto'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
+
+
+.state('contacto', {
+    url: '/contacto',
+    views: {
+      'principal': {
+        templateUrl: 'templates/templategeolocalizacion.html',
+        controllerUrl:'js/controlContacto.js',
+        controller: 'controlContacto'
       },
       'menuSuperior': {
         templateUrl: 'templates/menuSuperior.html',
@@ -111,6 +174,20 @@ views: {
     templateUrl:"templates/templategrilla.html",
     
     controller:'controlGrilla'},
+
+    'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }}
+  })
+
+ .state('grillaCompra', 
+  {  url: '/grillaCompra',
+    views: {
+      'principal': {
+    templateUrl:"templates/templategrillacompra.html",
+    
+    controller:'controlGrillaCompras'},
 
     'menuSuperior': {
         templateUrl: 'templates/menuSuperior.html',

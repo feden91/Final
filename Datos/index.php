@@ -8,6 +8,7 @@ require '../PHP/clases/usuarios.php';
 require '../PHP/clases/AccesoDatos.php';
 
 require '../PHP/clases/Productos.php';
+require '../PHP/clases/Compras.php';
 
 $app = new Slim\App();
 
@@ -17,13 +18,24 @@ $app->get('/traerProductos[/]', function ($request, $response, $args) {
     $response->write(json_encode($listado));
     return $response;
 });
-
+$app->get('/traerCompras[/]', function ($request, $response, $args) {
+    $listado['listado']= compra::TraerTodasLasCompras();
+    $response->write(json_encode($listado));
+    return $response;
+});
 $app->post('/AltaUsuarios[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
     var_dump('helou');
 	$unaPersona= usuario::InsetarUnUsuario($respuesta->datos->usuario);
 
 	$response->write(var_dump($unaPersona));
+});
+$app->post('/AltaCompras[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    var_dump('helou');
+    $unaCompra= compra::InsertarUnaCompra($respuesta->datos->compra);
+
+    $response->write(var_dump($unaCompra));
 });
 $app->post('/AltaProductos[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
@@ -33,6 +45,13 @@ $app->post('/AltaProductos[/]', function($request, $response, $args){
     $response->write(var_dump($unProducto));
 });
 
+$app->post('/AltaCompra[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    var_dump('helou');
+    $unaCompra= compra::InsetarUnaCompra($respuesta->datos->compra);
+
+    $response->write(var_dump($unaCompra));
+});
 $app->put('/ModificarProductos[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
     $unProducto= Producto::ModificarProducto($respuesta->datos->producto);
@@ -67,10 +86,7 @@ $app->post('/Login[/]', function($request, $response, $args){
         $token=array(
             "dni"=>$idUsuario->dni,
             "correo"=>$idUsuario->correo,
-            "localidad"=>$idUsuario->localidad,
-            "direccion"=>$idUsuario->direccion,
-            "apellido"=>$idUsuario->apellido,
-            "nombre"=>$idUsuario->nombre,
+           "tipo"=>$idUsuario->tipo,
             "clave"=>$idUsuario->clave,
             "exp"=>time() + 96000
         );
