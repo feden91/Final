@@ -10,6 +10,8 @@ class compra
     
     public $dni;
     public $cantidad;
+    public $precio;
+     public $total;
     
 	
 
@@ -17,10 +19,12 @@ class compra
 	public static function TraerTodasLasCompras()
 	{
 		$objetoAccesoDato=AccesoDatos::dameUnObjetoAcceso();
-		$consulta=$objetoAccesoDato->RetornarConsulta("SELECT * FROM compras");
+		$consulta=$objetoAccesoDato->RetornarConsulta("SELECT * FROM compras  ");
 		$consulta->execute();
 		return $consulta->fetchall(PDO::FETCH_CLASS, "compra");
 	}
+
+
 	
 	public static function TraerUnaCompra($fecha, $total) 
 	{	
@@ -42,7 +46,7 @@ class compra
 	public static function InsertarUnaCompra($compra)
 	{
 		$objetoAccesoDato=AccesoDatos::dameUnObjetoAcceso();
-		$consulta=$objetoAccesoDato->RetornarConsulta("INSERT into compras (codigo,fecha,dni,cantidad) VALUES ('$compra->codigo','$compra->fecha','$compra->dni','$compra->cantidad')");
+		$consulta=$objetoAccesoDato->RetornarConsulta("INSERT into compras (codigo,fecha,dni,cantidad,precio,total) VALUES ('$compra->codigo','$compra->fecha','$compra->dni','$compra->cantidad','$compra->precio','$compra->total')");
 		$consulta->execute();
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();				
 	}	

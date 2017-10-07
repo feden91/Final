@@ -5,24 +5,48 @@ if($auth.isAuthenticated())
 
   }
 
-  
+ 
   console.log($scope.usuarioLogeado);
- 	
+$(function () {
+
+  $('#cmd').click(function () {
+    var doc = new jsPDF();
+    doc.addHTML($('#conten')[0], 15, 15, {
+      'background': '#fff',
+    }, function() {
+      doc.save('Pedidos.pdf');
+    });
+  });
+});
+                // var imgData = canvas.toDataURL('image/png'); 
+                // $("#imgRes").attr("src", imgData);             
+                // var doc = new jsPDF('p', 'mm');
+                // doc.addImage(imgData, 'PNG', 10, 10);
+           
+           
+                  // doc.save('sample-file.pdf');
+            
+//         });
+//     });
+// });
+// });
     factoryCompra.mostrarGrilla("otro").then(function(respuesta){
     $scope.ListadoCompras=respuesta;
+    
 
-    // factoryProducto.mostrarGrilla2("otro").then(function(respuesta){
-    // $scope.ListadoProductos=respuesta;
+    
+   // factoryProducto.mostrarGrilla2("otro").then(function(respuesta){
+   //  $scope.ListadoProductos=respuesta;
 
   });
 
 
 
-$scope.Borrar=function(usuario){
+$scope.Borrar=function(compra){
 
-    console.log(usuario);
+    console.log(compra);
 
-    var data = compra.codigo;
+    var data = compra.id;
     
     $http.delete('http://localhost/final/Datos/BorrarCompra/' +data)
    .then(function(respuesta) {       
@@ -83,46 +107,4 @@ var listado;
       });
 
   };
-
-
-
-
-});
-
-
-
-app.factory('factoryProducto',function(servicioProducto){
-
-    var producto={
-      // nombre:'Leandro',
-      // nombreApellido:'Leandro Cannarozzi',
-      mostrarGrilla2:function(dato){
-          this.nombre=dato;
-          return servicioProducto.retornarProductos().then(function(respuesta){
-                  return respuesta;
-
-          });
-          //console.log("Este es mi nombre: "+dato);
-      }
-  };
-    return producto;
-});
-
-app.service('servicioProducto',function($http){
-var listado;
-
-  this.retornarProductos=function(){
-      return  $http.get('http://localhost/final/Datos/traerProductos/')
-        .then(function(respuesta) {       
-
-          //$scope.ListadoPersonas = respuesta.data.listado;
-          return respuesta.data.listado;
-
-         //console.log(respuesta.data);
-
-      });
-
-  };
-
-
-});
+  });

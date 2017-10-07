@@ -11,7 +11,7 @@ class Producto
   	public $stock;
   	public $precio;
     public $foto;
-    
+    public $tipo;
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
@@ -172,7 +172,7 @@ class Producto
 	{
 		 
 		$objetoAccesoDato=AccesoDatos::dameUnObjetoAcceso();
-		$consulta=$objetoAccesoDato->RetornarConsulta("INSERT into producto (nombre,codigo,descripcion,stock,precio,foto) VALUES ('$producto->nombre', '$producto->codigo','$producto->descripcion','$producto->stock','$producto->precio','$producto->foto')");
+		$consulta=$objetoAccesoDato->RetornarConsulta("INSERT into producto (nombre,codigo,descripcion,stock,precio,foto,tipo) VALUES ('$producto->nombre', '$producto->codigo','$producto->descripcion','$producto->stock','$producto->precio','$producto->foto','$producto->tipo')");
 		$consulta->execute();
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();	
 		

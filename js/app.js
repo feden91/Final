@@ -135,12 +135,12 @@ views: {
   })
 
 .state('confirmarCompra', {
-    url: '/confirmarCompra//{:codigo}?',
+    url: '/confirmarCompra//{:codigo}?:nombre:stock:descripcion:precio:foto',
     views: {
       'principal': {
         templateUrl: 'templates/confirmarCompra.html',
         controllerUrl:'js/controlProducto2.js',
-        controller: 'controlProducto'
+        controller: 'controlProducto2'
       },
       'menuSuperior': {
         templateUrl: 'templates/menuSuperior.html',
@@ -180,14 +180,26 @@ views: {
           controller: 'controlMenuSuperior'
       }}
   })
+.state('grillaRodados', 
+  {  url: '/grillaRodados',
+    views: {
+      'principal': {
+    templateUrl:"templates/templategrillarodados.html",
+    
+    controller:'controlGrilla1'},
 
+    'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }}
+  })
  .state('grillaCompra', 
   {  url: '/grillaCompra',
     views: {
       'principal': {
     templateUrl:"templates/templategrillacompra.html",
-    
-    controller:'controlGrillaCompras'},
+    controller:'controlGrilla',
+    },
 
     'menuSuperior': {
         templateUrl: 'templates/menuSuperior.html',

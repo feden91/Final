@@ -7,6 +7,13 @@ app.controller('controlCompra', function($scope,$stateParams, $http,$auth, servi
     $scope.usuarioLogeado=$auth.getPayload();
 
   }
+$scope.producto={};
+  $scope.producto.codigo=$stateParams.codigo ;
+  $scope.producto.nombre= $stateParams.nombre ;
+  $scope.producto.descripcion=$stateParams.descripcion ;
+  $scope.producto.foto=$stateParams.foto;
+$scope.producto.stock= $stateParams.stock ;
+  $scope.producto.precio=$stateParams.precio ;
 
   $scope.compra={};
   $scope.compra.codigo=$scope.producto.codigo ;

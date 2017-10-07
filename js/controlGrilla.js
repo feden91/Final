@@ -8,6 +8,8 @@ if($auth.isAuthenticated())
   
   console.log($scope.usuarioLogeado);
  	
+
+
     factoryProducto.mostrarGrilla("otro").then(function(respuesta){
     $scope.ListadoProductos=respuesta;
   });

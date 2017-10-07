@@ -14,7 +14,7 @@ File: Layout CSS
 @import url("featured_slide.css");
 
 html{overflow-y:scroll;}
-body{margin:0; padding:0; font-size:13px; font-family:verdana, Arial, Helvetica, sans-serif; color:#f7f7f7; background-color:#FFFFFF;}
+body{ margin:0; padding:0; font-size:13px; font-family:verdana, Arial, Helvetica, sans-serif; color:#f7f7f7; background-color:#FFFFFF;}
 
 .justify{text-align:justify;}
 .bold{font-weight:bold;}
@@ -44,7 +44,7 @@ img{display:block; margin:0; padding:0; border:none;}
 div.wrapper{display:block; width:100%; margin:0; text-align:left;}
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0; padding:0; font-size:20px; font-weight:normal; line-height:normal; font-family:Georgia, "Times New Roman", Times, serif;}
 .col1{color:#CCCCCC; background-color:#000000;}
-.col2, .col2 a{color:#FFFFFF; background-color:#B2C629;}
+.col2, .col2 a{ color:#FFFFFF; background-color:#B2C629;}
 .col3{color:#777777; background-color:#FFFFFF;}
 .col3 a{color:#95AD19; background-color:#FFFFFF;}
 .col4{color:#FFFFFF; background-color:#333333;}
@@ -142,7 +142,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   padding: 8% 0 0;
   margin: auto;
 }
-.form {
+.form {-webkit-border-radius: 28;
+              -moz-border-radius: 28;
+              border-radius: 28px;
   position: relative;
   z-index: 1;
   background: #B2C629;
@@ -162,6 +164,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -183,19 +188,20 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #95AD19;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
+.form button {background: #b2c629;
+      background-image: -webkit-linear-gradient(top, #b2c629, #7d8a1d);
+      background-image: -moz-linear-gradient(top, #b2c629, #7d8a1d);
+      background-image: -ms-linear-gradient(top, #b2c629, #7d8a1d);
+      background-image: -o-linear-gradient(top, #b2c629, #7d8a1d);
+      background-image: linear-gradient(to bottom, #b2c629, #7d8a1d);
+      -webkit-border-radius: 28;
+      -moz-border-radius: 28;
+      border-radius: 28px;
+      font-family: Arial;
+      color: #ffffff;
+      font-size: 20px;
+      padding: 5px 14px 5px 14px;
+      text-decoration: none;;
 }
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
@@ -246,6 +252,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   color: #EF3B3A;
 }
 body {
+ 
   background:#333333 ;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);
@@ -254,7 +261,11 @@ body {
   background: linear-gradient(to left, #333333, #333333);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+  -moz-osx-font-smoothing: grayscale;     
+  background-image: url("4.jpg"); 
+  background-repeat: no-repeat;
+
+  background-size: cover;
 }
 .btn-default:active,
 .btn-default.active,
@@ -358,10 +369,10 @@ fieldset[disabled] .btn-default.focus {
        color: #FFFFFF;
     background-color: #B2C629;
   }
- <style>
+
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
       width: 70%;
       margin: auto;
   }
-  </style>
+

@@ -1,4 +1,4 @@
-app.controller('controlProducto', function($scope, $http,$auth, $stateParams,$state, FileUploader, serviceCargadorDeFotos) {
+app.controller('controlProducto2', function($scope, $http,$auth, $stateParams,$state, FileUploader, serviceCargadorDeFotos) {
 
 if($auth.isAuthenticated())
   {
@@ -23,12 +23,17 @@ $scope.producto.stock= $stateParams.stock ;
 
   $scope.compra={};
   $scope.compra.codigo=$scope.producto.codigo;
-  
+  $scope.compra.precio=$scope.producto.precio;
 $scope.compra.fecha= new Date() ;
- 
-
-   
+ $scope.compra.cantidad=$stateParams.cantidad;
+var t1=$scope.compra.precio;
+var t2=$scope.compra.cantidad;
+var tota=t1*t2;
+$scope.compra.total=tota;
+   if($auth.isAuthenticated())
+  {
   $scope.compra.dni= $scope.usuarioLogeado.dni;
+  }
 
   $scope.compra.cantidad= new Date();
   // $scope.cargarFoto=function(nombreDeFoto){

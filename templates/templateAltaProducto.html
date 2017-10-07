@@ -6,7 +6,19 @@
       <input type="text" ng-model="producto.nombre" placeholder="Nombre"/>
       <input type="text" ng-model="producto.codigo" placeholder="Codigo"/>
       <input type="text" ng-model="producto.stock" placeholder="Stock"/>
+      
       <input type="text" ng-model="producto.precio" placeholder="Precio"/>
+       Tipo de producto:
+       <select ng-model="producto.tipo"  placeholder="Tipo ">
+        <option>r12</option>
+        <option>r14</option>
+        <option>r16</option>
+        <option>r20</option>
+        <option>r26</option>
+        <option>r28</option>
+        <option>Indumentaria</option>
+        <option>Partes</option>
+      </select>
       <textarea ng-model="producto.descripcion" placeholder="Descripcion" rows="7" cols="37"></textarea>
       
      

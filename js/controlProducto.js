@@ -1,4 +1,4 @@
-app.controller('controlProducto', function($scope, $http, $stateParams,$state, FileUploader, serviceCargadorDeFotos) {
+app.controller('controlProducto', function($scope, $auth,$http, $stateParams,$state, FileUploader, serviceCargadorDeFotos) {
 
 
 if($auth.isAuthenticated())

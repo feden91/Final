@@ -2,8 +2,8 @@
  <div class="form2 form2-responsive">
 <h1> Confirma agregar al carrito de : {{producto.nombre}}?</h1>
 <h1> Al precio por unidad : {{producto.precio}} </h1>
-<h1>Cantidad: </h1> <input type="number" ng-model="cantidad"  ng-keypress="Calcular()"></input>
-<h1> Al Total de : {{total}} </h1>
+<h1>Cantidad: </h1> <input type="text" ng-model="compra.cantidad"></input>
+
 <button ng-click='Guardar()'>Agregar a carrito</button> 
 
 </div>

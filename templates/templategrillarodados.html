@@ -32,7 +32,7 @@
 					</tr> 
 				</thead>
 
-	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> --><tr ng-repeat="producto in ListadoProductos|filter:Mifiltro as resultado"ng-if="tipo==producto.tipo">
+	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> --><tr ng-repeat="producto in ListadoProductos|filter:Mifiltro as resultado" >
 					<td><img  class='fotoGrilla' ng-src="fotos/{{producto.foto}}" /></td>				
 					<td>{{producto.nombre}}</td>
 				<td>{{producto.stock}}</td>

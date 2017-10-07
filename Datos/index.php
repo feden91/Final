@@ -106,7 +106,12 @@ $app->delete('/BorrarProducto/{data}', function($request, $response, $args){
     $unaPersona= Producto::BorrarProducto($args['data']);
     $response->write($args['data']);
 });
-
+$app->delete('/BorrarCompra/{data}', function($request, $response, $args){
+    
+    var_dump($args['data']); //Trae el dato
+    $unaCompra= Compra::BorrarUnaCompra($args['data']);
+    $response->write($args['data']);
+});
 // FIN USUARIOS
 
 
