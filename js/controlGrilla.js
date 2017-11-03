@@ -1,20 +1,32 @@
-app.controller('controlGrilla', function($scope, $http,factoryProducto,$auth) {
-if($auth.isAuthenticated())
-  {
-    $scope.usuarioLogeado=$auth.getPayload();
+app.controller('controlGrilla', function($scope, $http,factoryProducto,$auth,$filter) {
+ if($auth.isAuthenticated())
+   {  
+        $scope.usuarioLogeado=$auth.getPayload();
 
-  }
+   }
 
   
-  console.log($scope.usuarioLogeado);
- 	
+   console.log($scope.usuarioLogeado);
+   $scope.retornarcant=function(){
+    return $http.get('http://localhost/final/Datos/comprasXmes/')
+    .then(function(respuesta) {       
+      
+                //$scope.ListadoPersonas = respuesta.data.listado;
+                return respuesta.data.listado;
+      
+               //console.log(respuesta.data);
+      
+            });};
 
+            console.log($scope.retornarcant());
 
     factoryProducto.mostrarGrilla("otro").then(function(respuesta){
     $scope.ListadoProductos=respuesta;
   });
 
-
+  $scope.refreshData = function() {
+    $scope.ListadoProductos.data = $filter('filter')($scope.data, $scope.searchText);
+  };
 
 $scope.Borrar=function(usuario){
 
@@ -39,11 +51,6 @@ $scope.Borrar=function(usuario){
      });
 }
 });
-
-
-
-
-
 
 
 

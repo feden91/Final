@@ -47,7 +47,10 @@ class usuario
 	{
 		return $this->foto;
 	}
-
+	public function GetTipo()
+	{
+		return $this->tipo;
+	}
 	public function SetId($valor)
 	{
 		$this->id = $valor;
@@ -85,7 +88,10 @@ class usuario
 	{
 		$this->localidad = $valor;
 	}
-	 	
+	public function SetTipo($valor)
+	{
+		$this->tipo = $valor;
+	}	
 
 
 	 	
@@ -96,7 +102,14 @@ class usuario
 		$consulta->execute();
 		return $consulta->fetchall(PDO::FETCH_CLASS, "usuario");
 	}
-	
+	public static function cantidadUsuariosclientes(){
+		
+		$objetoAccesoDato=AccesoDatos::dameUnObjetoAcceso();
+		$consulta=$objetoAccesoDato->RetornarConsulta("SELECT count(*) as Cant FROM `usuario` WHERE tipo!='Administrador' or tipo!='Empleado' ");
+		
+		$consulta->execute();
+		return $consulta->fetch(PDO::PARAM_INT);
+	}
 	public static function TraerUnUsuario($dni, $clave) 
 	{	
 		$objetoAccesoDato= AccesoDatos::dameUnObjetoAcceso();
@@ -125,7 +138,7 @@ class usuario
 		public static function ModificarUnUsuario($usuario)
 	{
 		$objetoAccesoDato=AccesoDatos::dameUnObjetoAcceso();
-		$consulta=$objetoAccesoDato->RetornarConsulta("UPDATE usuarios SET Apellido='$usuario->Apellido', Nombres='$usuario->Nombres', Foto='$usuario->Foto' WHERE Dni='$usuario->Dni'");
+		$consulta=$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET Apellido='$usuario->apellido', Nombre='$usuario->nombre', Foto='$usuario->foto', Tipo='$usuario->tipo' WHERE Dni='$usuario->dni'");
 		$consulta->execute();
 	}
 

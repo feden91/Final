@@ -12,6 +12,7 @@ app.controller('controlModificar', function($scope, $http, $stateParams,$state, 
   $scope.producto.foto=$stateParams.foto;
 $scope.producto.stock= $stateParams.stock ;
   $scope.producto.precio=$stateParams.precio ;
+  $scope.producto.tipo=$stateParams.tipo ;
   // $scope.cargarFoto=function(nombreDeFoto){
 
   //   var direccion="fotos/"+nombreDeFoto;

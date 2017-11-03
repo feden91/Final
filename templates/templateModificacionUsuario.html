@@ -1,0 +1,53 @@
+
+<body>
+<div class="login-page">
+  <div class="form">
+     
+    <form class="login-form">
+    <h2> Modificación de Usuario </h2>
+      <input type="text" ng-model="usuario.nombre" placeholder="Nombre"/>
+      <input type="text" ng-model="usuario.apellido" placeholder="Apellido"/>
+      <input type="text" ng-model="usuario.localidad" placeholder="Localidad"/>
+      <input type="text" ng-model="usuario.direccion" placeholder="Dirección"/>
+      <input type="text" ng-model="usuario.dni" placeholder="Dni"/>
+      <input type="text" ng-model="usuario.correo" placeholder="Correo electronico"/>
+      <div ng-if="usuarioLogeado.tipo=='Administrador'">
+      <select ng-model="usuario.tipo"  placeholder="Tipo de usuario">
+        <option>Administrador</option>
+        <option>Empleado</option>
+        <option>Cliente</option>
+      </select>
+      </div>
+      <input type="password" ng-model="usuario.clave" placeholder="Contraseña"/>
+      
+  
+        
+           <center> <!-- Muestro los datos de los archivos a cargar -->
+            <input type="file" nv-file-select uploader="uploader" ng-show="!uploader.queue[0]" class="btn btn-primary" ng-model="usuario.foto" required multiple/><br/>
+                  
+    
+                <!-- Muestro los datos de los archivos a cargar -->
+                    <li ng-repeat="item in uploader.queue">
+                      <!-- nombre del archivo -->
+                        Archivo: <span ng-bind="item.file.name"></span><br/>
+                        <!-- imagen del archivo -->
+                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+
+                        <!-- boton cancel -->            
+                                    <!-- <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                          <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button> -->
+
+                        <!-- boton remove -->
+                        <button  class="but1" ng-click="item.remove()">
+                          Cambiar Foto
+                        </button>
+                    </li> 
+                  </ul>
+</center>
+      <br><button ng-click="Guardar()">Guardar</button>
+     
+    </form>
+  </div>
+</div>
+</body>

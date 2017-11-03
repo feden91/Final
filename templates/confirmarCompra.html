@@ -1,10 +1,10 @@
 <div ng-if="usuarioLogeado!=undefined">
  <div class="form2 form2-responsive">
-<h1> Confirma agregar al carrito de : {{producto.nombre}}?</h1>
-<h1> Al precio por unidad : {{producto.precio}} </h1>
-<h1>Cantidad: </h1> <input type="text" ng-model="compra.cantidad"></input>
+<h1> Confirma agregar al carrito : {{producto.nombre}}?</h1>
+<h1> Al precio por unidad : $ {{producto.precio}} </h1>
+<h1>Cantidad: </h1> <br><br><input type="text" ng-model="compra.cantidad"></input><br><br>
 
-<button ng-click='Guardar()'>Agregar a carrito</button> 
+<button class="but1" ng-click='Guardar()'>Agregar a carrito</button> 
 
 </div>
 

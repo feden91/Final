@@ -1,5 +1,6 @@
 app.controller('controlSignUp', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos) {
- $scope.DatoTest="**singUp**";
+  $scope.myData=[1,4,5,5,10];
+  $scope.DatoTest="**singUp**";
  $scope.uploader = new FileUploader({url: 'PHP/nexo.php'});
       $scope.uploader.queueLimit = 1; // indico cuantos archivos permito cargar
             

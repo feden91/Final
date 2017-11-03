@@ -1,5 +1,9 @@
-  
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+</head>
+<body>
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
@@ -9,10 +13,10 @@
 
     <div  id="topnav">
       <ul>
-        <li class="active"><a ui-sref="grilla">Inicio</a></li>
-        <li><a ui-sref="rodados">Rodados</a></li>
-        <li><a ui-sref="signup" >Indumentaria</a></li>
-        <li><a ui-sref="login">Accesorios</a>
+        <li ><a ui-sref="grilla">Inicio</a></li>
+        <li ><a ui-sref="rodados">Rodados</a></li>
+        <li><a ui-sref="grillarodados({param1: 'Indumentaria'})" >Indumentaria</a></li>
+        <li><a ui-sref="grillarodados({param1: 'Partes'})">Partes</a>
         <li><a ui-sref="contacto">Contactanos</a>
         
     <li ><div ng-if="usuarioLogeado==undefined">    <a ui-sref="login">Identificarse</a></div></li>
@@ -25,9 +29,15 @@
 
   <button class="dropbtn"><li>{{usuarioLogeado.correo}}</li></button>
   <div class="dropdown-content">
-    <a ui-sref="grillaCompra">Ver Carrito</a>
-    <div ng-if="usuarioLogeado.tipo=='Administrador'"><a  ui-sref="altaProducto">Alta Productos</a></div>
-  
+    
+    <div ng-if="usuarioLogeado.tipo=='Cliente'"><a ui-sref="grillaCompra">Ver Carrito</a></div>
+    
+    <div ng-if="usuarioLogeado.tipo=='Empleado'"><a  ui-sref="altaProducto">Alta Productos</a></div>
+    <div ng-if="usuarioLogeado.tipo=='Empleado'"><a  ui-sref="estadistica">Estadisticas</a></div>
+    <div ng-if="usuarioLogeado.tipo=='Administrador'"><a  ui-sref="estadistica2">Estadisticas</a></div>
+    <div ng-if="usuarioLogeado.tipo=='Administrador'"><a  ui-sref="grillaUsuarios">Usuarios</a></div>
+    <div ng-if="usuarioLogeado.tipo=='Empleado'"><a  ui-sref="comprasUsuarios">Gestion de Ventas</a></div>
+
 
     <a ui-sref="logout">Salir</a>
   </div>
@@ -46,3 +56,4 @@
     <br class="clear" />
   </div>
 </div>
+</body>

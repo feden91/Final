@@ -20,22 +20,36 @@ $state.go('login');
 $scope.producto.stock= $stateParams.stock ;
   $scope.producto.precio=$stateParams.precio ;
 
+// var o=new Date();
+// var m =o.getUTCMonth()+1;
 
+// var d =o.getUTCDate();
+// var y =o.getUTCFullYear();
+// newdate= y+"/"+m+"/"+d
   $scope.compra={};
   $scope.compra.codigo=$scope.producto.codigo;
   $scope.compra.precio=$scope.producto.precio;
-$scope.compra.fecha= new Date() ;
+  var o=new Date();
+  var m =o.getUTCMonth()+1;
+  
+  var d =o.getUTCDate();
+  var y =o.getUTCFullYear();
+  newdate= y+"/"+m+"/"+d
+   
+
+  $scope.compra.fecha= newdate ;
  $scope.compra.cantidad=$stateParams.cantidad;
 var t1=$scope.compra.precio;
+console.log(t1);
 var t2=$scope.compra.cantidad;
-var tota=t1*t2;
+console.log(t2);
+var tota=parseInt(t1)*parseInt(t2);
+console.log(tota);
 $scope.compra.total=tota;
-   if($auth.isAuthenticated())
-  {
+$scope.compra.estado="Pendiente de pago";
   $scope.compra.dni= $scope.usuarioLogeado.dni;
-  }
+  
 
-  $scope.compra.cantidad= new Date();
   // $scope.cargarFoto=function(nombreDeFoto){
 
   //   var direccion="fotos/"+nombreDeFoto;
@@ -59,7 +73,16 @@ $scope.compra.total=tota;
   //$scope.cargarFoto($scope.producto.Foto);
 
  $scope.Guardar= function(item, response, status, headers) {
-
+  var t1=$scope.compra.precio;
+  console.log(t1);
+  var t2=$scope.compra.cantidad;
+  console.log(t2);
+  var tota=parseInt(t1)*parseInt(t2);
+  console.log(tota);
+  $scope.compra.total=tota;
+  var a=$scope.producto.stock;
+  if (a>=t2 && t2!=0){
+  console.log( a);
   console.info("Voy a guardar", item, response,status, headers);
 
   console.log("compra a guardar:");
@@ -68,13 +91,15 @@ $scope.compra.total=tota;
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta);
-    
+    $http.post('http://localhost/final/Datos/ModificarStock/', { datos: {accion:"confirmarCompra",compra:$scope.compra}})
     $state.go('grillaCompra');
 
     },function errorCallback(response) {        
         //aca se ejecuta cuando hay errores
         console.log( response);           
     });
+  }else {if(a<t2){alert("No puede llevarse a cabo la compra ya que el stock es"+a);
+  }else{alert("Ingrese la cantidad de productos que desea");}}
   }
 
   //  $scope.Guardar=function(){

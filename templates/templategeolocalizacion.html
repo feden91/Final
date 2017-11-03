@@ -1,10 +1,9 @@
- <div class="form2 form2-responsive">
-Podes visitarnos en nuestro local en la localidad de avellaneda calle alsina 123
+<!--  <div class="form2 form2-responsive">
+
 <section id="wrapper">
 
 
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
     <article>
 
@@ -66,15 +65,15 @@ function success(position) {
 
 
 
-  // var marker = new google.maps.Marker({
+  var marker = new google.maps.Marker({
 
-  //     position: latlng,
+      position: latlng,
 
-  //     map: map,
+      map: map,
 
-  //     title:"You are here!"
+      title:"You are here!"
 
-  // });
+  });
 
 }
 
@@ -118,9 +117,39 @@ var mapOptions = {
 center: new google.maps.LatLng(25.80, -80.30),
 zoom: 10,
 mapTypeId: google.maps.MapTypeId.ROADMAP};
-var map = new google.maps.Map(document.getElementById("map"),mapOptions);}              
+var map = new google.maps.Map(document.getElementById("map"),mapOptions); 
+var marker = new google.maps.Marker({position:myCenter});
+    marker.setMap(map);}              
 </script>
 
 <div id="map"></div>
 
-</div>
+</div> -->
+
+<!DOCTYPE html>
+<html>
+
+<body>
+  <h4>Podes visitarnos en nuestro local en la localidad de avellaneda calle alsina 123</h4>
+<div id="map" style="width:100%;height:500px"></div>
+
+<script>
+function myMap() {
+  var myCenter = new google.maps.LatLng(-34.6625462,-58.36490035);
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {center: myCenter, zoom: 15};
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+  var marker = new google.maps.Marker({position:myCenter});
+  marker.setMap(map);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnmjVi1zu-rboRm2ajHY8hKtuCtqnaOi0&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>
+<!-- AIzaSyBHoljnJV-gd_0PtOokKVxxrSozERH7AvI -->

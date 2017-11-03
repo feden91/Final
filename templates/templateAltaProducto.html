@@ -19,7 +19,7 @@
         <option>Indumentaria</option>
         <option>Partes</option>
       </select>
-      <textarea ng-model="producto.descripcion" placeholder="Descripcion" rows="7" cols="37"></textarea>
+      <textarea class="textarea" ng-model="producto.descripcion" placeholder="Descripcion" rows="5" cols="27"></textarea>
       
      
 
@@ -42,10 +42,10 @@
                   <span class="glyphicon glyphicon-ban-circle"></span> Cancel
                   </button-->
                <!-- boton remove -->
-               <button type="button" class="btn btn-danger " ng-click="item.remove()">cambiar</button>
+               <button type="button" class="btn btn-danger " ng-click="item.remove()">cambiar</button><br></br>
             </li>
        
-         <input type="file" ng-show="!uploader.queue[0] "nv-file-select uploader="uploader"/>.
+         <input type="file" ng-show="!uploader.queue[0] "nv-file-select uploader="uploader"/>
          
          <input type="hidden" value="" id="idParaModificar" name="agregar" />
          <input type="hidden" value="" id="hdnAgregar" name="agregar" />

@@ -1,13 +1,48 @@
 
 
 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  
+ <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <style>
+ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+ </style>
+ <body class="w3-theme-l5">
 
 
-  <div class="form2 form2-responsive">
-   
-     
-<h1> {{producto.nombre}}</h1>
+     <!-- <style>
+     body {font-family: "Times New Roman", Georgia, Serif;}
+     h1,h2,h3,h4,h5,h6 {
+         font-family: "Playfair Display";
+         letter-spacing: 5px;
+     }
+     .panel-body{background-color: #95AD19}
+     .panel-default>.panel-heading {background-color: #e5ef30}
+     </style> -->
+     <br></br>
+     <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+      
+      
+      <h4>{{producto.nombre}}</h4>
+      <hr class="w3-clear">
+      <p>{{producto.descripcion}}</p>
+      <p>${{producto.precio}}</p>
+        <div class="w3-row-padding" style="margin:0 -16px">
+          <div class="w3-half">
+            <br></br>
+          </div>
+          <div class="w3-half">
+            <img ng-src="fotos/{{producto.foto}}" class='foto'width="178" height="180" class="w3-margin-bottom">
+        </div>
+      </div>
+      <button type="button" class="but2"ui-sref='confirmarCompra({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto})'>Agregar a carrito</button>
+      <button type="button" class="but2"ui-sref="grilla" >Volver</button> 
+    <br></br>
+    </div>
+    
+<!-- <h1> {{producto.nombre}}</h1>
 <div></div>
 <center><img  class='foto'width="178" height="180"  ng-src="fotos/{{producto.foto}}" /></center>
  
@@ -16,4 +51,4 @@
 
 <button ui-sref='confirmarCompra({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto})'>Agregar a carrito</button>
 
-</div>
+</div> -->

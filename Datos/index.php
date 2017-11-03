@@ -23,6 +23,43 @@ $app->get('/traerCompras[/]', function ($request, $response, $args) {
     $response->write(json_encode($listado));
     return $response;
 });
+$app->get('/traerUsuarios[/]', function ($request, $response, $args) {
+    
+    $listado['listado']= usuario::TraerTodosLosUsuarios();
+    $response->write(json_encode($listado));
+    return $response;
+});
+$app->get('/traerCantUsuarios[/]', function ($request, $response, $args) {
+    
+    $listado= usuario::cantidadUsuariosclientes();
+    $response->write(json_encode($listado));
+    return $response;
+});
+$app->get('/comprasXmes[/]', function ($request, $response, $args) {
+    
+    $listado= compra::comprasXmes();
+    $response->write(json_encode($listado));
+    return $response;
+});
+$app->get('/comprasTot[/]', function ($request, $response, $args) {
+    
+    $listado= compra::comprasTot();
+    $response->write(json_encode($listado));
+    return $response;
+});
+
+$app->get('/cantProductos[/]', function ($request, $response, $args) {
+    
+    $listado= producto::cantProductos();
+    $response->write(json_encode($listado));
+    return $response;
+});
+$app->get('/comprasTotPagas[/]', function ($request, $response, $args) {
+    
+    $listado= compra::comprasTotPagas();
+    $response->write(json_encode($listado));
+    return $response;
+});
 $app->post('/AltaUsuarios[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
     var_dump('helou');
@@ -37,6 +74,21 @@ $app->post('/AltaCompras[/]', function($request, $response, $args){
 
     $response->write(var_dump($unaCompra));
 });
+$app->post('/ModificarStock[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    var_dump('helou');
+    $unStock= producto::ModificarStock($respuesta->datos->compra);
+
+    $response->write(var_dump($unaStock));
+});
+$app->post('/ModificarEstadoCompra[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    var_dump('helou');
+    $unaCompra= compra::ModificarEstadoCompra($respuesta->datos->compra);
+
+    $response->write(var_dump($unaCompra));
+});
+
 $app->post('/AltaProductos[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
     var_dump('helou');
@@ -44,11 +96,16 @@ $app->post('/AltaProductos[/]', function($request, $response, $args){
 
     $response->write(var_dump($unProducto));
 });
-
+$app->delete('/BorrarUsuario/{data}', function($request, $response, $args){
+    
+    var_dump($args['data']); //Trae el dato
+    $unUsuario= usuario::BorrarUnUsuario($args['data']);
+    $response->write($args['data']);
+});
 $app->post('/AltaCompra[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
     var_dump('helou');
-    $unaCompra= compra::InsetarUnaCompra($respuesta->datos->compra);
+    $unaCompra= compra::InsertarUnaCompra($respuesta->datos->compra);
 
     $response->write(var_dump($unaCompra));
 });
@@ -58,6 +115,19 @@ $app->put('/ModificarProductos[/]', function($request, $response, $args){
 
     $response->write(var_dump($unProducto));
 });
+$app->put('/ModificarUsuarios[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    $unUsuario= usuario::ModificarUnUsuario($respuesta->datos->usuario);
+
+    $response->write(var_dump($unUsuario));
+});
+$app->post('/ModificarStockcom[/]', function($request, $response, $args){
+    $respuesta=json_decode($request->getBody());
+    $unStock= Producto::ModificarStockcom($respuesta->datos->compra);
+
+    $response->write(var_dump($unStock));
+});
+
 $app->put('/Producto[/]', function($request, $response, $args){
     $respuesta=json_decode($request->getBody());
     $unProducto= Producto::TraerUnaPersona($respuesta->datos->producto);
@@ -99,6 +169,7 @@ $app->post('/Login[/]', function($request, $response, $args){
         return $response;
     }
 });
+
 
 $app->delete('/BorrarProducto/{data}', function($request, $response, $args){
     

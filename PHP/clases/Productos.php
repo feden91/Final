@@ -112,7 +112,14 @@ class Producto
 		return $productoBuscado;	
 					
 	}
-	
+	public static function cantProductos() 
+	{	
+		$objetoAccesoDato= AccesoDatos::dameUnObjetoAcceso();
+		$consulta=$objetoAccesoDato->RetornarConsulta("SELECT count(*) as Cant3 FROM producto");
+		$consulta->execute();
+		$compraBuscado=$consulta->fetch(PDO::PARAM_INT);
+		return $compraBuscado;				
+	}
 	public static function TraerTodasLosProductos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -132,8 +139,25 @@ class Producto
 		return $consulta->rowCount();
 		
 	}
-
-		
+  
+	public static function ModificarStock($compra)
+	{
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			/*$consulta =$objetoAccesoDato->RetornarConsulta("
+				update persona 
+				set nombre=:nombre,
+				apellido=:apellido,
+				foto=:foto
+				WHERE id=:id");
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();*/ 
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET  stock=stock-'$compra->cantidad' WHERE codigo='$compra->codigo'");
+			// $consulta->bindValue(':id',$persona->id, PDO::PARAM_INT);
+			// $consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
+			// $consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
+			// $consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
+			return $consulta->execute();
+	}	
+	
 	
 	public static function ModificarProducto($producto)
 	{
@@ -152,7 +176,23 @@ class Producto
 			// $consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
 			return $consulta->execute();
 	}
-
+	public static function ModificarStockcom($compra)
+	{
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			/*$consulta =$objetoAccesoDato->RetornarConsulta("
+				update persona 
+				set nombre=:nombre,
+				apellido=:apellido,
+				foto=:foto
+				WHERE id=:id");
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();*/ 
+			$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET  stock=stock+'$compra->cantidad' WHERE codigo='$compra->codigo'");
+			// $consulta->bindValue(':id',$persona->id, PDO::PARAM_INT);
+			// $consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
+			// $consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
+			// $consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
+			return $consulta->execute();
+	}	
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//

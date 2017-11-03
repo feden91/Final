@@ -1,0 +1,67 @@
+<div id="page-wrapper">
+	<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-lg-12">
+				<h1 class="page-header">
+					</br>
+				<div class="panel panel-default">
+						<div class="panel-heading">
+				Listado de Usuarios
+				</div></div>
+				 </h1>
+		</div>
+
+		<!-- <input type="search" placeholder="Buscar persona..." ng-model="Mifiltro">
+		<input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
+		<input type="search" placeholder="Buscar Apellido.." ng-model="Qapellido"></input> -->
+<div class="form2">
+ 
+
+		<table class='table table-hover table-responsive' id="listaUsuarios">
+			<thead>
+				<tr>
+				<th>  Foto     </th>				
+				<th>  Nombre     </th>
+				<th>  Apellido	   </th>
+				<th>  Dni        </th>
+				<th>  Tipo        </th>
+				<th>  Correo        </th>
+	
+				 <th ng-if="usuarioLogeado.tipo=='Administrador'">  	 BORRAR     </th>
+				<th ng-if="usuarioLogeado.tipo=='Administrador'">  	 MODIFICAR  </th> 
+				
+			
+				</tr> 
+			</thead>
+
+<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> -->
+	
+	
+	<tr ng-repeat="usuario in ListadoUsuarios">
+				<td><img  class='fotoGrilla' ng-src="fotos/{{usuario.foto}}" /></td>				
+				<td>{{usuario.nombre}}</td>
+			<td>{{usuario.apellido}}</td>
+			<td>{{usuario.dni}}</td>
+			<td>{{usuario.tipo}}</td>
+			<td>{{usuario.correo}}</td>
+
+				<td ng-if="usuarioLogeado.tipo=='Administrador'">
+				 <button class='btnBorrar' name='Borrar' ng-click="Borrar(usuario)"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button></td>
+				<td ng-if="usuarioLogeado.tipo=='Administrador'"> 
+					<button class='btnModify' name='Modificar' ui-sref="modificarUsuario({id:usuario.id, nombre:usuario.nombre,apellido:usuario.apellido,dni:usuario.dni,foto:usuario.foto,correo:usuario.correo,clave:usuario.clave,direccion:usuario.direccion,localidad:usuario.localidad,tipo:usuario.tipo})"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Modificar</button></td>
+			
+					</tr>
+</div>									
+			<!-- <tr ng-if="resultado.length==0">		
+				<td></td>
+				<td>No existen productos con esos datos</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr> -->
+		</table>
+	</div>
+</div>
+</div>
+

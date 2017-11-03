@@ -1,5 +1,5 @@
 
-var app = angular.module('ABMangularPHP', ['ui.router', 'angularFileUpload', 'satellizer']);
+var app = angular.module('ABMangularPHP', ['ui.router', 'angularFileUpload', 'satellizer','zingchart-angularjs']);
 
 app.config(function($stateProvider, $urlRouterProvider, $authProvider){
 
@@ -28,12 +28,79 @@ views: {
       },
       url: '/menu'
     })
-.state('login', {
-    url: '/login',
+    .state('login', {
+      url: '/login',
+      views: {
+        'principal': {
+          templateUrl: 'templates/templateLogin.html',
+          controller: 'controlLogin'
+        },
+        'menuSuperior': {
+          templateUrl: 'templates/menuSuperior.html',
+            controller: 'controlMenuSuperior'
+        }
+      }
+  
+    })
+    .state('grillarodados', {
+      url: '/grillarodados',
+      params: {
+          param1: null
+      },
+      views: {
+        'principal': {
+          templateUrl: 'templates/templategrillarodados.html',
+      
+          controller: 'controlGrillaRodados'
+        },
+        
+       
+        'menuSuperior': {
+          templateUrl: 'templates/menuSuperior.html',
+            controller: 'controlMenuSuperior'
+        }
+      }
+  
+    })
+  .state('estadistica', {
+    url: '/estadistica',
     views: {
       'principal': {
-        templateUrl: 'templates/templateLogin.html',
-        controller: 'controlLogin'
+        templateUrl: 'templates/templateEstadisticas.html',
+        controller: 'controlEstadisticas'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
+
+  .state('estadistica2', {
+    url: '/estadistica2',
+    views: {
+      'principal': {
+        templateUrl: 'templates/templateEstadisticas2.html',
+        controller: 'controlEstadisticas2'
+      },
+      'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }
+    }
+
+  })
+  
+  .state('Ticket', {
+    url: '/Ticket',
+    params:{
+      obj:null
+    },
+    views: {
+      'principal': {
+        templateUrl: 'templates/templateTicket.html',
+        controller: 'controlTicket'
       },
       'menuSuperior': {
         templateUrl: 'templates/menuSuperior.html',
@@ -180,25 +247,52 @@ views: {
           controller: 'controlMenuSuperior'
       }}
   })
-.state('grillaRodados', 
-  {  url: '/grillaRodados',
+.state('grillaRodados2', 
+  {  url: '/grillaRodados2:dat?tip',
     views: {
       'principal': {
-    templateUrl:"templates/templategrillarodados.html",
-    
-    controller:'controlGrilla1'},
+    templateUrl:"templates/templategrillarodados2.html",
+    controllerUrl:'js/controlGrillaRodados2.js',
+    controller:'controlGrillaRodados2'},
 
     'menuSuperior': {
         templateUrl: 'templates/menuSuperior.html',
           controller: 'controlMenuSuperior'
       }}
   })
+  .state('grillaUsuarios', 
+  {  url: '/grillaUsuarios',
+    views: {
+      'principal': {
+    templateUrl:"templates/templateGrillaUsuarios.html",
+    
+    controller:'controlGrillaUsuarios'},
+
+    'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }}
+  })
+  
  .state('grillaCompra', 
   {  url: '/grillaCompra',
     views: {
       'principal': {
     templateUrl:"templates/templategrillacompra.html",
-    controller:'controlGrilla',
+    controller:'controlGrillaCompras',
+    },
+
+    'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }}
+  })
+  .state('comprasUsuarios', 
+  {  url: '/comprasUsuarios',
+    views: {
+      'principal': {
+    templateUrl:"templates/templatecomprasusuarios.html",
+    controller:'controlComprasUsuarios',
     },
 
     'menuSuperior': {
@@ -208,10 +302,10 @@ views: {
   })
   
  .state('modificarProducto', 
-  {  url: '/modificarProducto/{:codigo}?:nombre:stock:descripcion:precio:foto',
+  {  url: '/modificarProducto/{:codigo}?:nombre:stock:descripcion:precio:foto:tipo',
     views: {
       'principal': {
-    templateUrl:"templates/templateAltaProducto.html",
+    templateUrl:"templates/templateModificacionProducto.html",
     
     controller:'controlModificar'},
 
@@ -219,7 +313,48 @@ views: {
         templateUrl: 'templates/menuSuperior.html',
           controller: 'controlMenuSuperior'
       }}
-  })/* .state('alta', 
+  })
+  .state('EstadoVenta', 
+  {  url: '/EstadoVenta/{:id}?:fecha:dni:cantidad:precio:total:estado',
+    views: {
+      'principal': {
+    templateUrl:"templates/templateEstadoVenta.html",
+    
+    controller:'controlEstadoVenta'},
+
+    'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }}
+  })
+  .state('Pago', 
+  {  url: '/Pago/{:id}?:fecha:dni:cantidad:precio:total:estado',
+    views: {
+      'principal': {
+    templateUrl:"templates/templatePago.html",
+    
+    controller:'controlPago'},
+
+    'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }}
+  })
+
+  .state('modificarUsuario', 
+  {  url: '/modificarUsuario/{:id}?:nombre:apellido:dni:foto:correo:clave:direccion:localidad:tipo',
+    views: {
+      'principal': {
+        templateUrl: 'templates/templateModificacionUsuario.html',
+       
+    controller:'controlModificarUsuarios'},
+
+    'menuSuperior': {
+        templateUrl: 'templates/menuSuperior.html',
+          controller: 'controlMenuSuperior'
+      }}
+  })
+  /* .state('alta', 
   {
     templateUrl:"templateusuario.html",
     url:'/alta',

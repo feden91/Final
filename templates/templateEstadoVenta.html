@@ -1,0 +1,24 @@
+
+	
+
+
+<div class="login-page">
+  <div class="form">
+   
+    <form class="login-form">
+      <label>
+        <input type="radio" ng-model="compra.estado" value="Pendiente de pago"> Pendiente de pago. </label><br/>
+      <label>
+        <input type="radio" ng-model="compra.estado" value="Preparandose para envio">
+        Preparandose para envio.
+      </label><br/>
+      <input type="radio" ng-model="compra.estado" value="En camino">
+      En camino
+    </label><br/>
+    <input type="radio" ng-model="compra.estado" value="Pedido Entregado">
+    Pedido Entregado
+  </label><br/>
+  <button type="button" class="but2" ng-click="CambiarEstado()">Aceptar</button> 
+    </form>
+  </div>
+</div>

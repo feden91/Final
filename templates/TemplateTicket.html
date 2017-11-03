@@ -1,0 +1,161 @@
+<script src="js/jspdf.min.js"></script>
+<div  class="wrapper col2">
+<button class="but1" id="cmd">Descargar Ticket</button>
+</div>
+<div class="contenido" id="conten" >
+    <div class="ticket">
+      <div class="hqr">
+        <div class="column left-one"></div>
+        <div class="column center">
+              
+                  
+                        Bicicleteria Alsina
+                   
+        </div>
+        <div class="column right-one"></div>
+      </div>
+      </div>
+      <div class="details">
+        
+            <div class="tdata">
+          Ticket valido para retiro
+        </div>
+         
+        <div class="tinfo">
+          Compra nro:
+        </div>
+        <div class="tdata">
+          
+          {{ticket.nro}}
+        </div>  
+        <div class="tinfo">
+          Total:
+        </div>
+        <div class="tdata">
+          ${{ticket.total}}
+        </div>  
+        <div class="tdata">
+          Estado: Pago
+        </div>
+       
+        <div class="masinfo">
+          <div class="left">
+           <div class="tinfo">
+          Fecha:
+        </div>
+        <div class="tdata nesp">
+                {{ticket.fecha}}
+        </div>  
+          </div>
+          <div class="left">
+          <div class="tinfo">
+          Direccion
+        </div>
+        <div class="tdata nesp">
+          Alsina 123, Avellaneda.
+        </div> 
+        
+                
+          
+    </div>
+        
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+<style >
+    /* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400'); */
+.float-left {
+float:left;
+width:300px; 
+}
+/* body {
+  background:url('https://unsplash.it/800/1200/?random');
+  background-size:cover;
+  background-color: gray;
+} */
+.contenido {
+  margin: 30px auto;
+  max-height: 430px;
+  max-width: 245px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgb(202, 202, 204);
+  
+  border-radius: 2px;
+}
+.details {
+  padding: 26px;
+  background:white;
+  border-top: 1px dashed #c3c3c3;
+}
+.tinfo {
+  font-size: 0.5em;
+  font-weight: 300;
+  color: #6b6767;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin:7px 0;
+}
+
+.tdata {
+  font-size: 0.7em;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+  margin:7px 0;
+  color:#333333
+}
+
+.name {
+  font-size: 1.3em;
+  font-weight: 300;
+  color:#7ca37c; 
+}
+
+.link {
+ 
+  margin-top:10px;
+  color:#333333;
+}
+
+
+.hqr{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  margin: 0px auto;
+}
+  .left-one{
+  background-repeat: no-repeat;
+  background-image: radial-gradient(circle at 0 96% , rgba(0,0,0,0) .2em, gray .3em, white .1em);
+}
+  .right-one{
+  background-repeat: no-repeat;
+  background-image: radial-gradient(circle at 100% 96% , rgba(0,0,0,0) .2em, gray .3em, white .1em);
+}
+.column
+{
+    display: table-cell;
+    padding: 37px 0px;
+}
+.center{
+  background:#86ca86;
+}
+
+.masinfo{
+  display:block;
+}
+.left,.right{
+  width:49%;
+  display:inline-table;
+}
+
+.nesp{
+  letter-spacing: 0px;
+}
+    
+    </style>  

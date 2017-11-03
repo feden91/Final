@@ -1,0 +1,63 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+
+		<div class="row">
+			<div class="col-lg-12">
+		    	<h1 class="page-header">
+			    	</br>
+			       <div  class="wrapper col2"> Listado de Compras</div>
+		   		 <div  class="wrapper col2">	<script src="js/jspdf.min.js"></script>
+			
+			<button id="cmd">Descargar Pedidos</button></div>
+				
+		   		</h1>
+			</div>
+
+			<!-- <input type="search" placeholder="Buscar persona..." ng-model="Mifiltro">
+			<input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
+			<input type="search" placeholder="Buscar Apellido.." ng-model="Qapellido"></input> -->
+<div  class="form2" id="conten">
+   
+
+			<table class='table table-hover table-responsive' id="listaCompras">
+				<thead>
+					<tr>
+					
+					<th>  Fecha     </th>				
+					<th>  Dni    </th>
+				     <th>  Codigo        </th>
+					<th>  Cantidad        </th>
+					<th> Precio por Unidad</th>
+					<th> Estado  </th>
+					<th> Total  </th>
+					<th >  	Cancelar   </th>
+					<th >  	Cambiar Estado   </th>
+					</tr> 
+				</thead>
+		          
+
+	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> -->
+		<tr ng-repeat="compra in ListadoCompras|filter:Mifiltro as resultado"  >
+					
+					<td>{{compra.fecha}}</td>
+				<td>{{compra.dni}}</td>
+				<td>{{compra.codigo}}</td>
+				<td>{{compra.cantidad}}</td>
+				<td>${{compra.precio}}</td>
+				<td>{{compra.estado}}</td>
+				<td>${{compra.total}}</td>			 
+					 <td >
+					 <button class='button' name='Cancelar' ng-click="Borrar(compra)"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button></td>
+					 <td >
+									<button class='button' name='ModificarEstado' ui-sref="EstadoVenta({id:compra.id,codigo:compra.codigo,fecha:compra.fecha, dni:compra.dni,cantidad:compra.cantidad, precio:compra.precio,total:compra.total,estado:compra.estado})"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Cambiar Estado</button></td>
+					   </tr>
+	
+	</div>			
+</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+

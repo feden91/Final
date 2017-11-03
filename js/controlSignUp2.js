@@ -1,5 +1,6 @@
 app.controller('controlSignUp', function($scope, $http, FileUploader, $state, serviceCargadorDeFotos,$auth) {
-if($auth.isAuthenticated())
+  $scope.myData=[1,4,5,5,10];
+  if($auth.isAuthenticated())
   {
     $scope.usuarioLogeado=$auth.getPayload();
 

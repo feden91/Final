@@ -8,14 +8,23 @@
   <script type="text/javascript" src="layout/scripts/jquery.min.js"></script>
  <!-- <script type="text/javascript" src="layout/scripts/jquery.jcarousel.pack.js"></script>
 <script type="text/javascript" src="layout/scripts/jquery.jcarousel.setup.js"></script>  
+
    -->
-<script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
-    <script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+   
+   
+   <script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+   <script src="bower_components/zingchart/client/zingchart.min.js"></script>
+   <script src="bower_components/ZingChart-AngularJS/src/zingchart-angularjs.js"></script>
+   <script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/satellizer/satellizer.min.js"></script>
     <script SRC="js/app.js" TYPE="text/javascript"></script>
     <script type="text/javascript" src="js/directivas/ngThumb.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--  <script src="js/jsPDF.js"></script>
  <script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script> -->
 </head>
@@ -46,16 +55,64 @@
 <script SRC="js/controlContacto.js" TYPE="text/javascript"></script>
   <script SRC="js/serviceCargadorDeFotos.js" TYPE="text/javascript"></script>
   <script SRC="js/controlGrillaCompras.js" TYPE="text/javascript"></script>
-
-
-
+  <script SRC="js/controlEstadisticas.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlEstadisticas2.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlGrillaUsuarios.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlComprasUsuarios.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlEstadoVenta.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlPago.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlGrillaRodados.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlGrillaRodados2.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlTicket.js" TYPE="text/javascript"></script>
+  <script SRC="js/controlModificarUsuarios.js" TYPE="text/javascript"></script>
+  
 </body>
 </html>
+<footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
+  <h4>Seguinos en las redes:</h4>
+  <a class="w3-button w3-large w3-teal" href="https://es-la.facebook.com/" title="Facebook"><i class="fa fa-facebook"></i></a>
+  <a class="w3-button w3-large w3-teal" href="https://twitter.com/login?lang=es" title="Twitter"><i class="fa fa-twitter"></i></a>
+  <a class="w3-button w3-large w3-teal" href="https://plus.google.com/discover?hl=es" title="Google +"><i class="fa fa-google-plus"></i></a>
+  <a class="w3-button w3-large w3-teal" href="https://www.instagram.com/?hl=es" title="Google +"><i class="fa fa-instagram"></i></a>
+  <a class="w3-button w3-large w3-teal w3-hide-small" href="https://ar.linkedin.com/" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+  <p>Copyright &copy; 2017 - Todos los derechos reservados - Federico Nunez</p>
 
-<div class="wrapper col5">
+  <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-padding w3-teal w3-hide-small">Inicio</span>   
+    <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+</footer>
+
+<script>
+// Script for side navigation
+function w3_open() {
+    var x = document.getElementById("mySidebar");
+    x.style.width = "300px";
+    x.style.paddingTop = "10%";
+    x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+<!-- <div class="wrapper col5">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">FedeN</a></p>
     
     <br class="clear" />
   </div>
-</div>
+</div> -->
