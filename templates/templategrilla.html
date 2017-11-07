@@ -4,13 +4,14 @@
 		<div class="row">
 			<div class="col-lg-12">
 		    	<h1 class="page-header">
-			    	</br>
+			    	<br>
 					<div class="panel panel-default">
 							<div class="panel-heading">
 					Listado de Productos
 					</div></div>
 		   		</h1>
 			</div>
+		
 			<div class="panel-heading">
 				
 				<input type="text" name="search" placeholder="Buscar..." ng-model="mifiltro"></div>
@@ -36,7 +37,7 @@
 input[type=text]:focus {
     width: 100%;
 }</style>
-			<div class="form2">
+			<div class="form2" id="lalala">
    
 
 			<table class='table table-hover table-responsive' id="listaProductos">
@@ -48,24 +49,25 @@ input[type=text]:focus {
 					<th>  Codigo        </th>
 					<th>  Descripcion        </th>
 					<th>  Precio        </th>
-		<div  >
+	 	<div>
 				 <th ng-if="usuarioLogeado.tipo !=null"> <a ng-if="usuarioLogeado.tipo !='Cliente'">  	 BORRAR    </a> </th> 
 				 <th ng-if="usuarioLogeado.tipo !=null">	<a ng-if="usuarioLogeado.tipo !='Cliente'">  	 MODIFICAR  </a></th> 
-				</div>
+				
 					<th ng-if="usuarioLogeado.tipo=='Cliente'">  VER PRODUCTO  </th>
 					</tr> 
 				</thead>
+				</div>
 
-	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> -->
-		
-		<tr ng-repeat="producto in ListadoProductos | filter:{$:mifiltro, nombre: Qnombre} as resultado"> 
+	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | limitTo: 1 |filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> -->
+	
+		<tr ng-repeat="producto in ListadoProductos |filter:{$:mifiltro, nombre: Qnombre,precio:Qprecio} as resultado"> 
 		<!-- <tr ng-repeat="producto in ListadoProductos"> -->
 					<td><img  class='fotoGrilla' ng-src="fotos/{{producto.foto}}" /></td>				
-					<td>{{producto.nombre}}</td>
+						<td>{{producto.nombre}}</td>
 				<td>{{producto.stock}}</td>
 				<td>{{producto.codigo}}</td>
 				<td>{{producto.descripcion}}</td>
-				<td>{{producto.precio}}</td>
+				<td>${{producto.precio}}</td>
  
 				<td ng-if="usuarioLogeado.tipo !=null">	<a ng-if="usuarioLogeado.tipo !='Cliente'">
 					 <button class='btnBorrar' name='Borrar' ng-click="Borrar(producto)"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button> </a></td>

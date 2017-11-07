@@ -5,8 +5,8 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider){
 
   //  $authProvider.loginUrl = 'http://localhost/final/Datos/Login/';
   // $authProvider.signupUrl = 'http://localhost/final/Datos/Login/';
-   $authProvider.loginUrl = 'http://localhost/final/Datos/Login/'; //"http://api.com/auth/login";
-  $authProvider.signupUrl = 'http://localhost/final/Datos/Login/'; //"http://api.com/auth/signup";
+   $authProvider.loginUrl = 'http://bicicleteriaalsina.000webhostapp.com/Datos/Login/'; //"http://api.com/auth/login";
+  $authProvider.signupUrl = 'http://bicicleteriaalsina.000webhostapp.com/Datos/Login/'; //"http://api.com/auth/signup";
  $authProvider.tokenName = 'tokenFest2016';
   $authProvider.tokenPrefix = 'login';
   $authProvider.authHeader = 'Data';
@@ -18,7 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider){
   {
 views: {
         'principal': {
-          templateUrl: 'templates/inicio.html',
+          templateUrl: 'templates/Inicio.html',
           controller: 'controlMenu'
         },
         'menuSuperior': {
@@ -66,7 +66,7 @@ views: {
     url: '/estadistica',
     views: {
       'principal': {
-        templateUrl: 'templates/templateEstadisticas.html',
+        templateUrl: 'templates/TemplateEstadisticas.html',
         controller: 'controlEstadisticas'
       },
       'menuSuperior': {
@@ -81,7 +81,7 @@ views: {
     url: '/estadistica2',
     views: {
       'principal': {
-        templateUrl: 'templates/templateEstadisticas2.html',
+        templateUrl: 'templates/TemplateEstadisticas2.html',
         controller: 'controlEstadisticas2'
       },
       'menuSuperior': {
@@ -99,7 +99,7 @@ views: {
     },
     views: {
       'principal': {
-        templateUrl: 'templates/templateTicket.html',
+        templateUrl: 'templates/TemplateTicket.html',
         controller: 'controlTicket'
       },
       'menuSuperior': {
@@ -158,7 +158,7 @@ views: {
     url: '/rodados',
     views: {
       'principal': {
-        templateUrl: 'templates/templateRodados.html',
+        templateUrl: 'templates/TemplateRodados.html',
         controllerUrl:'js/controlRodados.js',
         controller: 'controlRodados'
       },

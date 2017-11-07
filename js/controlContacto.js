@@ -29,11 +29,11 @@ app.controller('controlContacto', function($scope, $http, FileUploader, $state, 
         }
       }
     };
-    $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
-      if (_.isEqual(newVal, oldVal))
-        return;
-      $scope.coordsUpdates++;
-    });
+   //$scope.$watchCollection("marker.coords", function (newVal, oldVal) {
+     // if (_.isEqual(newVal, oldVal))
+       // return;
+      //$scope.coordsUpdates++;
+    //});
     $timeout(function () {
       $scope.marker.coords = {
         latitude: 42.1451,

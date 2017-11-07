@@ -95,7 +95,7 @@ public function SetEstado($valor)
 	public static function TraerTodasLasCompras()
 	{
 		$objetoAccesoDato=AccesoDatos::dameUnObjetoAcceso();
-		$consulta=$objetoAccesoDato->RetornarConsulta("SELECT * FROM compra  ");
+		$consulta=$objetoAccesoDato->RetornarConsulta("SELECT * FROM compra ORDER BY id DESC ");
 		$consulta->execute();
 		return $consulta->fetchall(PDO::FETCH_CLASS, "compra");
 	}

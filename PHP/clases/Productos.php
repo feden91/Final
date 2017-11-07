@@ -1,5 +1,5 @@
 <?php
-require_once"accesoDatos.php";
+require_once"AccesoDatos.php";
 class Producto
 {
 //--------------------------------------------------------------------------------//
@@ -130,10 +130,10 @@ class Producto
 		return $consulta->fetchAll(PDO::FETCH_CLASS, "producto");	
 	}
 	
-	public static function BorrarProducto($idParametro)
+	public static function BorrarProducto($codigo)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM producto WHERE id=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM producto WHERE codigo='$codigo'");	
 		
 		$consulta->execute();
 		return $consulta->rowCount();

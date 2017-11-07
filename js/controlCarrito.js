@@ -33,7 +33,7 @@ app.controller('controlAltaProducto', function($scope, $http, FileUploader, $sta
 
   console.log("persona a guardar:");
   console.log($scope.producto);
-  $http.post('http://localhost/final/Datos/AltaProductos/', { datos: {accion:"altaProducto",producto:$scope.producto}})
+  $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/AltaProductos/', { datos: {accion:"altaProducto",producto:$scope.producto}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta.data);

@@ -43,7 +43,7 @@ app.controller('controlSignUp', function($scope, $http, FileUploader, $state, se
 
   console.log("persona a guardar:");
   console.log($scope.usuario);
-  $http.post('http://localhost/final/Datos/AltaUsuarios/', { datos: {accion:"signup",usuario:$scope.usuario}})
+  $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/AltaUsuarios/', { datos: {accion:"signup",usuario:$scope.usuario}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta.data);

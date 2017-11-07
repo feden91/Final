@@ -27,7 +27,7 @@ $scope.Borrar=function(usuario){
 
     var data = producto.codigo;
     
-    $http.delete('http://localhost/final/Datos/BorrarProducto/' +data)
+    $http.delete('http://bicicleteriaalsina.000webhostapp.com/Datos/BorrarProducto/'+data)
    .then(function(respuesta) {       
            //aca se ejetuca si retorno sin errores        
            console.log(respuesta.data);
@@ -69,7 +69,7 @@ app.service('servicioProducto',function($http){
 var listado;
 
   this.retornarProductos=function(){
-      return  $http.get('http://localhost/final/Datos/traerProductos/')
+      return  $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/traerProductos/')
         .then(function(respuesta) {       
 
           //$scope.ListadoPersonas = respuesta.data.listado;

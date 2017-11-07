@@ -45,7 +45,7 @@ $scope.producto.stock= $stateParams.stock ;
 
   console.log("persona a guardar:");
   console.log($scope.producto);
-  $http.put('http://localhost/final/Datos/ModificarProductos/', { datos: {accion :"modificarProducto",producto:$scope.producto}})
+  $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/ModificarProductos/',{ datos: {accion :"modificarProducto",producto:$scope.producto}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta.data);

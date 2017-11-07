@@ -87,11 +87,11 @@ $scope.compra.estado="Pendiente de pago";
 
   console.log("compra a guardar:");
   console.log($scope.compra);
-  $http.post('http://localhost/final/Datos/AltaCompras/', { datos: {accion:"confirmarCompra",compra:$scope.compra}})
+  $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/AltaCompras/', { datos: {accion:"confirmarCompra",compra:$scope.compra}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta);
-    $http.post('http://localhost/final/Datos/ModificarStock/', { datos: {accion:"confirmarCompra",compra:$scope.compra}})
+    $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/ModificarStock/', { datos: {accion:"confirmarCompra",compra:$scope.compra}})
     $state.go('grillaCompra');
 
     },function errorCallback(response) {        

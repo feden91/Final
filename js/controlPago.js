@@ -20,7 +20,7 @@ app.controller('controlPago', function($scope, $http, $stateParams,$state, FileU
 
   console.log("estado a guardar:");
   console.log($scope.compra);
-  $http.post('http://localhost/final/Datos/ModificarEstadoCompra/', { datos: {compra:$scope.compra}})
+  $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/ModificarEstadoCompra/', { datos: {compra:$scope.compra}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta.data);

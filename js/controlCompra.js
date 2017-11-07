@@ -48,7 +48,7 @@ $scope.compra.fecha= $stateParams.fecha ;
 
   console.log("compra a guardar:");
   console.log($scope.compra);
-  $http.post('http://localhost/final/Datos/AltaCompras/', { datos: {accion:"altaCompra",compra:$scope.compra}})
+  $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/AltaCompras/', { datos: {accion:"altaCompra",compra:$scope.compra}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta);

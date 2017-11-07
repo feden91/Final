@@ -4,17 +4,45 @@
 		<div class="row">
 			<div class="col-lg-12">
 		    	<h1 class="page-header">
-			    	</br>
-			       <div  class="wrapper col2"></div> Carrito</div>
-		   		 <div  class="wrapper col2"> <button class="but1" id="cmd">Descargar Pedidos</button>	<script src="js/jspdf.min.js"></script>
+			    	<br>
+			       <div  class="wrapper col2"> Carrito</div>
+		   		 <div  class="wrapper col2"> <button class="but1" id="cmd">Descargar Pedidos</button>
+		   		 
+		   		 <button class="but1">
+                <a href="#" id ="export" role='button'>Descargar Pedidos Excel
+                </a>
+            </button>
+               
+		   		 <script src="js/jspdf.min.js"></script>
 				</div>
-				
+				 
 		   		</h1>
 			</div>
-			
-		<button class="but1" id="cmd">Descargar Pedidos</button>
-			<!-- <input type="search" placeholder="Buscar..." ng-model="Mifiltro">
-			 <input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
+	
+				<div class="panel-heading">
+	
+			<input type="text" placeholder="Buscar..." ng-model="mifiltro">	</div>
+	
+	
+	<style>input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    /* background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}</style>
+			<!--  <input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
 			<input type="search" placeholder="Buscar Apellido.." ng-model="Qapellido"></input> -->
 <div  class="form2" id="conten">
    
@@ -24,8 +52,8 @@
 					<tr>
 					
 					<th>  Fecha     </th>				
-					<th>  Dni    </th>
-				     <th>  Codigo        </th>
+					 <th>  Codigo Compra   </th>
+				     <th>  Codigo Producto   </th>
 					<th>  Cantidad        </th>
 					<th> Precio por Unidad</th>
 					<th> Estado  </th>
@@ -37,10 +65,11 @@
 		          
 
 	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> -->
-		<tr ng-repeat="compra in ListadoCompras|filter:Mifiltro as resultado"  ng-if="usuarioLogeado.dni==compra.dni">
+		<tr ng-repeat="compra in ListadoCompras| filter:{$:mifiltro, id: Qid, fecha: Qfecha} as resultado"  ng-if="usuarioLogeado.dni==compra.dni">
 					
 					<td>{{compra.fecha}}</td>
-				<td>{{compra.dni}}</td>
+					<td>{{compra.id}}</td>
+				
 				<td>{{compra.codigo}}</td>
 				<td>{{compra.cantidad}}</td>
 				<td>${{compra.precio}}</td>

@@ -11,7 +11,7 @@ app.controller('controlEstadisticas2', function($scope, $http, $location, $state
       var e=null;
   $scope.$on('$viewContentLoaded',function(){
     
-    $http.get('http://localhost/final/Datos/comprasTotPagas/')
+    $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/comprasTotPagas/')
     .then((response)=>{
 
 
@@ -20,7 +20,7 @@ console.log(e);
 }).catch(()=>{
     console.log("error al traer los datos")
   });
-    $http.get('http://localhost/final/Datos/cantProductos/')
+    $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/cantProductos/')
     .then((response)=>{
 
 
@@ -29,21 +29,21 @@ console.log(d);
 }).catch(()=>{
     console.log("error al traer los datos")
   });
-    $http.get('http://localhost/final/Datos/comprasTot/')
+    $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/comprasTot/')
     .then((response)=>{
 
 
 c=response.data.sum1;
 console.log(c);
 
-    $http.get('http://localhost/final/Datos/comprasXmes/')
+    $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/comprasXmes/')
     .then((response)=>{
 
 
 b=response.data.Cant2;
 console.log(b);
     
-      $http.get('http://localhost/final/Datos/traerCantUsuarios/')
+      $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/traerCantUsuarios/')
       .then((response)=>{
 
 

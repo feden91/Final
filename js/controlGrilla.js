@@ -4,11 +4,11 @@ app.controller('controlGrilla', function($scope, $http,factoryProducto,$auth,$fi
         $scope.usuarioLogeado=$auth.getPayload();
 
    }
-
+ 
   
    console.log($scope.usuarioLogeado);
    $scope.retornarcant=function(){
-    return $http.get('http://localhost/final/Datos/comprasXmes/')
+    return $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/comprasXmes/')
     .then(function(respuesta) {       
       
                 //$scope.ListadoPersonas = respuesta.data.listado;
@@ -28,13 +28,13 @@ app.controller('controlGrilla', function($scope, $http,factoryProducto,$auth,$fi
     $scope.ListadoProductos.data = $filter('filter')($scope.data, $scope.searchText);
   };
 
-$scope.Borrar=function(usuario){
+$scope.Borrar=function(producto){
 
-    console.log(usuario);
+    console.log(producto);
 
     var data = producto.codigo;
     
-    $http.delete('http://localhost/final/Datos/BorrarProducto/' +data)
+    $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/BorrarProducto/'+data)
    .then(function(respuesta) {       
            //aca se ejetuca si retorno sin errores        
            console.log(respuesta.data);
@@ -76,7 +76,7 @@ app.service('servicioProducto',function($http){
 var listado;
 
   this.retornarProductos=function(){
-      return  $http.get('http://localhost/final/Datos/traerProductos/')
+      return $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/traerProductos/')
         .then(function(respuesta) {       
 
           //$scope.ListadoPersonas = respuesta.data.listado;

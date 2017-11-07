@@ -2,7 +2,7 @@ app.controller('controlLogout', function($scope, $http, $auth, $state) {
   if($auth.isAuthenticated())
   {
     $auth.logout();
-    $state.go('signup'); 
+    $state.go('login'); 
   }
   else
   {

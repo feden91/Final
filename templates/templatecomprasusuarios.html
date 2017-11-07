@@ -4,17 +4,42 @@
 		<div class="row">
 			<div class="col-lg-12">
 		    	<h1 class="page-header">
-			    	</br>
+			    	<br>
 			       <div  class="wrapper col2"> Listado de Compras</div>
 		   		 <div  class="wrapper col2">	<script src="js/jspdf.min.js"></script>
 			
-			<button id="cmd">Descargar Pedidos</button></div>
-				
+			<button class="but1" id="cmd">Descargar Pedidos PDF</button>
+				<button class="but1">
+                <a href="#" id ="export" role='button'>Descargar Pedidos Excel
+                </a>
+            </button>
+			</div>
+			
 		   		</h1>
 			</div>
+		
+<div class="panel-heading">
+			 <input type="text" placeholder="Buscar..." ng-model="mifiltro"></div>
+		<style>input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    /* background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
 
-			<!-- <input type="search" placeholder="Buscar persona..." ng-model="Mifiltro">
-			<input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
+input[type=text]:focus {
+    width: 100%;
+}</style>	 
+			 
+			<!--<input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
 			<input type="search" placeholder="Buscar Apellido.." ng-model="Qapellido"></input> -->
 <div  class="form2" id="conten">
    
@@ -24,8 +49,9 @@
 					<tr>
 					
 					<th>  Fecha     </th>				
-					<th>  Dni    </th>
-				     <th>  Codigo        </th>
+				  <th>  Codigo Compra  </th>
+				  	<th>  Dni    </th>
+				     <th>  Codigo Producto  </th>
 					<th>  Cantidad        </th>
 					<th> Precio por Unidad</th>
 					<th> Estado  </th>
@@ -37,9 +63,10 @@
 		          
 
 	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> -->
-		<tr ng-repeat="compra in ListadoCompras|filter:Mifiltro as resultado"  >
+		<tr ng-repeat="compra in ListadoCompras | filter:{$:mifiltro, id: Qid, dni: Qdni} as resultado"  >
 					
 					<td>{{compra.fecha}}</td>
+				<td>{{compra.id}}</td>
 				<td>{{compra.dni}}</td>
 				<td>{{compra.codigo}}</td>
 				<td>{{compra.cantidad}}</td>
@@ -47,9 +74,9 @@
 				<td>{{compra.estado}}</td>
 				<td>${{compra.total}}</td>			 
 					 <td >
-					 <button class='button' name='Cancelar' ng-click="Borrar(compra)"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button></td>
+					 <button class='btnBorrar' name='Cancelar' ng-click="Borrar(compra)"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button></td>
 					 <td >
-									<button class='button' name='ModificarEstado' ui-sref="EstadoVenta({id:compra.id,codigo:compra.codigo,fecha:compra.fecha, dni:compra.dni,cantidad:compra.cantidad, precio:compra.precio,total:compra.total,estado:compra.estado})"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Cambiar Estado</button></td>
+									<button class='btnModify' name='ModificarEstado' ui-sref="EstadoVenta({id:compra.id,codigo:compra.codigo,fecha:compra.fecha, dni:compra.dni,cantidad:compra.cantidad, precio:compra.precio,total:compra.total,estado:compra.estado})"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Cambiar Estado</button></td>
 					   </tr>
 	
 	</div>			

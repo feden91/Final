@@ -1,6 +1,18 @@
 app.controller('controlModificarUsuarios', function($scope, $http, $stateParams,$state, FileUploader, serviceCargadorDeFotos,$auth) {
   $scope.DatoTest="*modificar**";
-
+$scope.items = [{
+  id: 1,
+  label: 'Administrador',
+  subItem: { name: 'Administrador' }
+}, {
+  id: 2,
+  label: 'Empleado',
+  subItem: { name: 'Empleado' }
+}, {
+  id: 3,
+  label: 'Cliente',
+  subItem: { name: 'Cliente' }
+}];
   if($auth.isAuthenticated())
   {  
        $scope.usuarioLogeado=$auth.getPayload();
@@ -51,13 +63,13 @@ $scope.usuario.dni= $stateParams.dni ;
   console.info("Voy a modificar", item, response,status, headers);  
 
   console.log("persona a guardar:");
-  console.log($scope.producto);
-  $http.put('http://localhost/final/Datos/ModificarUsuarios/', { datos: {accion :"modificarUsuario",usuario:$scope.usuario}})
+  console.log($scope.usuario);
+  $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/ModificarUsuarios/', { datos: {accion :"modificarUsuario",usuario:$scope.usuario}})
   .then(function(respuesta) {       
     //aca se ejetuca si retorno sin errores        
     console.log(respuesta.data);
     alert("Se ha modificado correctamente");
-    $state.go('signup');
+    $state.go('grillaUsuarios');
 
   },function errorCallback(response) {        
     //aca se ejecuta cuando hay errores
