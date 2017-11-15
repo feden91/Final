@@ -1,11 +1,28 @@
-app.controller('controlGrilla', function($scope, $http,factoryProducto,$auth,$filter) {
+app.controller('controlGrilla', function($scope, $http,factoryProducto,$auth,$filter,$timeout) {
  if($auth.isAuthenticated())
    {  
         $scope.usuarioLogeado=$auth.getPayload();
 
    }
  
-  
+   $scope.$on('$viewContentLoaded',function(){
+ 
+
+
+
+      $scope.myValue = false;
+      $timeout(function() {
+         $scope.myValue = true;
+      }, 2000);
+      console.log($scope.myValue);
+      
+       $scope.myValue2 = true;
+      $timeout(function() {
+         $scope.myValue2 = false;
+      }, 2000);
+      console.log($scope.myValue2);
+   });
+   
    console.log($scope.usuarioLogeado);
    $scope.retornarcant=function(){
     return $http.get('http://bicicleteriaalsina.000webhostapp.com/Datos/comprasXmes/')

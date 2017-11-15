@@ -1,16 +1,16 @@
-app.controller('controlLogin', function($scope, $http, $auth, $state) {
+app.controller('controlLogin', function($scope, $http, $auth, $state,$timeout) {
  $scope.Entraradm=function($tipousuario){
   switch ($tipousuario) {
     case "Administrador":
-    $scope.correo="algo@algo.com";
+    $scope.correo="admin@algo.com";
     $scope.clave="lanus";
       break;
       case "Cliente":
-      $scope.correo="cliente@cliente.com";
+      $scope.correo="cliente@algo.com";
       $scope.clave="lanus";
         break;
         case "Empleado":
-        $scope.correo="Empleado@Empleado.com";
+        $scope.correo="Empleado@algo.com";
         $scope.clave="lanus";
           break;
     default:
@@ -21,6 +21,24 @@ app.controller('controlLogin', function($scope, $http, $auth, $state) {
   
  }
  
+  $scope.$on('$viewContentLoaded',function(){
+ 
+
+
+
+      $scope.myValue = false;
+      $timeout(function() {
+         $scope.myValue = true;
+      }, 3000);
+      console.log($scope.myValue);
+      
+       $scope.myValue2 = true;
+      $timeout(function() {
+         $scope.myValue2 = false;
+      }, 3000);
+      console.log($scope.myValue2);
+   });
+
  if($auth.isAuthenticated())
  {
    $state.go('grilla');

@@ -1,3 +1,31 @@
+  <div ng-hide="myValue" class="ng-hide">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="s1">
+      <div class="s b sb1"></div>
+      <div class="s b sb2"></div>
+      <div class="s b sb3"></div>
+      <div class="s b sb4"></div>
+    </div>
+
+
+    <div class="s2">
+      <div class="s b sb5"></div>
+      <div class="s b sb6"></div>
+      <div class="s b sb7"></div>
+      <div class="s b sb8"></div>
+    </div>
+
+    <div class="bigcon">
+      <div class="big b"></div>
+
+    </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+   
+
+<div ng-hide="myValue2" class="ng-hide">
+
+
 <div id="page-wrapper">
     <div class="container-fluid">
 		<script data-require="jquery@*" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.js"></script>
@@ -5,48 +33,30 @@
 			<div class="col-lg-12">
 		    	<h1 class="page-header">
 			    	<br>
-			       <div  class="wrapper col2"> Carrito</div>
-		   		 <div  class="wrapper col2"> <button class="but1" id="cmd">Descargar Pedidos</button>
+					<div class="panel-headinge"> Carrito</div>
+		   		<div class="panel-headinge"> <button class="but1" id="cmd">Descargar Pedidos</button>
 		   		 
 		   		 <button class="but1">
                 <a href="#" id ="export" role='button'>Descargar Pedidos Excel
                 </a>
             </button>
-               
+			<input type ="lalale" placeholder="Buscar..." ng-model="mifiltro">	
 		   		 <script src="js/jspdf.min.js"></script>
 				</div>
 				 
 		   		</h1>
-			</div>
+			
 	
-				<div class="panel-heading">
+				
+			
 	
-			<input type="text" placeholder="Buscar..." ng-model="mifiltro">	</div>
 	
 	
-	<style>input[type=text] {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    /* background-image: url('searchicon.png'); */
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-
-input[type=text]:focus {
-    width: 100%;
-}</style>
 			<!--  <input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
 			<input type="search" placeholder="Buscar Apellido.." ng-model="Qapellido"></input> -->
-<div  class="form2" id="conten">
-   
-
+<div   id="conten">
+		<div class="scroll" id="style-2">
+<br>
 			<table class='table table-hover table-responsive' id="listaCompras">
 				<thead>
 					<tr>
@@ -73,21 +83,19 @@ input[type=text]:focus {
 				<td>{{compra.codigo}}</td>
 				<td>{{compra.cantidad}}</td>
 				<td>${{compra.precio}}</td>
-				<td><d ng-if="compra.estado != 'Pendiente de pago'">{{compra.estado}}</d> <d ng-if="compra.estado=='Pendiente de pago'"><button class="but1" name='ModificarEstado' ui-sref="Pago({id:compra.id,codigo:compra.codigo,fecha:compra.fecha, dni:compra.dni,cantidad:compra.cantidad, precio:compra.precio,total:compra.total,estado:compra.estado})"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Pagar</button></td>
+				<td><d ng-if="compra.estado != 'Pendiente de pago'">{{compra.estado}}</d> <d ng-if="compra.estado=='Pendiente de pago'"><button class="btnBorrar2" name='ModificarEstado' ui-sref="Pago({id:compra.id,codigo:compra.codigo,fecha:compra.fecha, dni:compra.dni,cantidad:compra.cantidad, precio:compra.precio,total:compra.total,estado:compra.estado})">Pagar</button></td>
 				</d></td>
 				
 						
 				<td>${{compra.total}}</td>			 
 					 <td>
-					 <button class='btnBorrar' name='Cancelar' ng-click="Borrar(compra)"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Cancelar Compra</button></td>
+					 <button class='btnBorrar' name='Cancelar' ng-click="Borrar(compra)">Cancelar</button></td>
 					</tr>
 	
 	</div>			
 </tr>
 			</table>
-		</div>
+		</div></div>
 	</div>
 </div>
-
-
 

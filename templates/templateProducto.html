@@ -7,7 +7,12 @@
  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <style>
- html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif} .w3-white, .w3-hover-white:hover {
+   margin: 20px 360px 20px 360px!important;
+    border-radius: 28px;
+    color: #000!important;
+    background-color: #fff!important;
+}
  </style>
  <body class="w3-theme-l5">
 
@@ -33,13 +38,14 @@
           <div class="w3-half">
             <br></br>
           </div>
-          <div class="w3-half">
+          <div >
             <img ng-src="fotos/{{producto.foto}}" class='foto'width="178" height="180" class="w3-margin-bottom">
         </div>
       </div>
+      <br>
       <button type="button" class="but2"ui-sref='confirmarCompra({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto})'>Agregar a carrito</button>
       <button type="button" class="but2"ui-sref="grilla" >Volver</button> 
-    <br></br>
+    <br><br>
     </div>
     
 <!-- <h1> {{producto.nombre}}</h1>

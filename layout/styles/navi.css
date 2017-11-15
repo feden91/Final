@@ -8,9 +8,28 @@ Licence URI: http://www.os-templates.com/template-terms
 File: Navigation CSS
 */
 
-#topnav{display:block; float:right; margin:7px 0 0 0; padding:0; list-style:none; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;}
+#topnav{display:block; float:right; margin:7px 0 0 0; padding:0; list-style:none; font-size:12px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;}
 #topnav ul, #topnav li{float:left; list-style:none; margin:0; padding:0;}
-#topnav li a:link, #topnav li a:visited, #topnav li a:hover{display:block; margin:0; padding:15px 20px; color:#FFFFFF; background-color:#86ca86;}
+#topnav li a:link, #topnav li a:visited, #topnav li a:hover{
+    background-image: url(../../images/log.jpg);
+    display: block;
+    margin: 0;
+    padding: 15px 20px;
+    /* background: #82e631; */
+    /* background-image: -webkit-linear-gradient(top, #82e631, #417328); */
+    background-image: -moz-linear-gradient(top, #82e631, #417328);
+    background-image: -ms-linear-gradient(top, #82e631, #417328);
+    background-image: -o-linear-gradient(top, #82e631, #417328);
+    /* background-image: linear-gradient(to bottom, #82e631, #417328); */
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    border: solid #ffffff 0px;
+    text-decoration: none;}
 #topnav ul ul li a:link, #topnav ul ul li a:visited{border:none;}
 #topnav li.last a{margin-right:0;}
 #topnav li a:hover, #topnav ul li.active a{color:#FFFFFF; background-color:#86ca86;}

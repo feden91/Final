@@ -1,9 +1,26 @@
-app.controller('controlGrillaCompras', function($scope, $http,factoryCompra,$auth) {
+app.controller('controlGrillaCompras', function($scope, $http,factoryCompra,$auth,$timeout) {
 if($auth.isAuthenticated())
   {
     $scope.usuarioLogeado=$auth.getPayload();
 
   }
+    $scope.$on('$viewContentLoaded',function(){
+ 
+
+
+
+      $scope.myValue = false;
+      $timeout(function() {
+         $scope.myValue = true;
+      }, 2000);
+      console.log($scope.myValue);
+      
+       $scope.myValue2 = true;
+      $timeout(function() {
+         $scope.myValue2 = false;
+      }, 2000);
+      console.log($scope.myValue2);
+   });
 $(document).ready(function () {
 
             console.log("HELLO")
@@ -134,7 +151,7 @@ $scope.Borrar=function(compra){
     var data = compra.id;
     
     $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/ModificarStockcom/', { datos: {accion:"grillaCompra",compra:compra}})
-    $http.delete('http://bicicleteriaalsina.000webhostapp.com/Datos/BorrarCompra/' +data)
+    $http.post('http://bicicleteriaalsina.000webhostapp.com/Datos/BorrarCompra/' +data)
    .then(function(respuesta) {       
            //aca se ejetuca si retorno sin errores        
            console.log(respuesta.data);

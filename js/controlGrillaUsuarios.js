@@ -1,9 +1,27 @@
-app.controller('controlGrillaUsuarios', function($scope, $http,factoryUsuarios,$auth) {
+app.controller('controlGrillaUsuarios', function($scope, $http,factoryUsuarios,$auth,$timeout) {
  if($auth.isAuthenticated())
    {  
         $scope.usuarioLogeado=$auth.getPayload();
 
    }
+    $scope.$on('$viewContentLoaded',function(){
+ 
+
+
+
+      $scope.myValue = false;
+      $timeout(function() {
+         $scope.myValue = true;
+      }, 2000);
+      console.log($scope.myValue);
+      
+       $scope.myValue2 = true;
+      $timeout(function() {
+         $scope.myValue2 = false;
+      }, 2000);
+      console.log($scope.myValue2);
+   });
+   
 $(document).ready(function () {
 
             console.log("HELLO")

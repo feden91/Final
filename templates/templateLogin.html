@@ -1,18 +1,33 @@
 
 	
 
-
 <div class="login-page">
   <div class="form">
    
     <form class="login-form">
       <input type="email" ng-model="correo"placeholder="Correo Electronico"/>
       <input type="password" ng-model="clave" placeholder="Contraseña"/>
-      <button ng-click="Entrar()">Ingresar</button><br><br>
-      <button ng-click="Entraradm('Administrador')">Administrador</button><br><br>
-      <button ng-click="Entraradm('Empleado')">Empleado</button><br><br>
-      <button ng-click="Entraradm('Cliente')">Cliente</button>
+      <button  class="buttonb1" ng-click="Entrar()">Ingresar</button><br><br>
+      <button class="button11"ng-click="Entraradm('Administrador')">Administrador</button><br><br>
+      <button class="button11" ng-click="Entraradm('Empleado')">Empleado</button><br><br>
+      
+      <button class="button11"  ng-click="Entraradm('Cliente')">Cliente</button>
       <p class="message">No esta registrado? <a ui-sref="signup">Crear una cuenta</a></p>
     </form>
   </div>
 </div>
+
+<html>
+
+
+  
+
+</html>
+
+    <style>
+        .button[type=buton]{
+                background-image: url(../../images/red.jpg);
+            
+        }
+        
+    </style>

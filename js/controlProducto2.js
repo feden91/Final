@@ -81,7 +81,10 @@ $scope.compra.estado="Pendiente de pago";
   console.log(tota);
   $scope.compra.total=tota;
   var a=$scope.producto.stock;
-  if (a>=t2 && t2!=0){
+  
+  if($scope.producto.stock<$scope.compra.cantidad){alert("No puede llevarse a cabo la compra ya que el stock es"+a);}
+  else if($scope.compra.cantidad==0){alert ("ingrese cantidad");}
+  else if ($scope.producto.stock>=$scope.compra.cantidad && $scope.compra.cantidad>0){
   console.log( a);
   console.info("Voy a guardar", item, response,status, headers);
 
@@ -98,8 +101,9 @@ $scope.compra.estado="Pendiente de pago";
         //aca se ejecuta cuando hay errores
         console.log( response);           
     });
-  }else {if(a<t2){alert("No puede llevarse a cabo la compra ya que el stock es"+a);
-  }else{alert("Ingrese la cantidad de productos que desea");}}
+  }
+  
+  
   }
 
   //  $scope.Guardar=function(){

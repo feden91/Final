@@ -1,25 +1,54 @@
+
+  <div ng-hide="myValue" class="ng-hide">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="s1">
+      <div class="s b sb1"></div>
+      <div class="s b sb2"></div>
+      <div class="s b sb3"></div>
+      <div class="s b sb4"></div>
+    </div>
+
+
+    <div class="s2">
+      <div class="s b sb5"></div>
+      <div class="s b sb6"></div>
+      <div class="s b sb7"></div>
+      <div class="s b sb8"></div>
+    </div>
+
+    <div class="bigcon">
+      <div class="big b"></div>
+
+    </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+   
+
+<div ng-hide="myValue2" class="ng-hide">
+
+
 <div id="page-wrapper">
     <div class="container-fluid">
 
-		<div class="row">
+	
 			<div class="col-lg-12">
-		    	<h1 class="page-header">
+		    	<h1 class="page-header"></h1>
 			    	<br>
 					<div class="panel panel-default">
-							<div class="panel-heading">
+							<div class="panel-headinge">
 					Listado de Productos
 					</div></div>
-		   		</h1>
+		   	
 			</div>
 		
-			<div class="panel-heading">
+			<div class="panel-headinge">
 				
-				<input type="text" name="search" placeholder="Buscar..." ng-model="mifiltro"></div>
+				<input  type ="lalale" name="search" placeholder="Buscar..." ng-model="Qnombre"></div>
 			<!-- <input type="search" placeholder="Buscar persona..." ng-model="Mifiltro">
 			<input type="search" placeholder="Buscar Nombre.." ng-model="Qnombre"></input>
 			<input type="search" placeholder="Buscar Apellido.." ng-model="Qapellido"></input> -->
 
-<style>input[type=text] {
+<!-- <style>input[type=text] {
     width: 130px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -36,12 +65,14 @@
 
 input[type=text]:focus {
     width: 100%;
-}</style>
-			<div class="form2" id="lalala">
+}</style> -->
+
+
+			<!-- <div class="form2" id="lalala"> -->
    
 
-			<table class='table table-hover table-responsive' id="listaProductos">
-				<thead>
+			<!-- <table class='table table-hover table-responsive' id="listaProductos">
+				 <thead>
 					<tr>
 					<th>  Foto     </th>				
 					<th>  Nombre     </th>
@@ -56,13 +87,46 @@ input[type=text]:focus {
 					<th ng-if="usuarioLogeado.tipo=='Cliente'">  VER PRODUCTO  </th>
 					</tr> 
 				</thead>
-				</div>
+				</div> -->
 
 	<!-- 			<tr ng-repeat="persona in ListadoPersonas | limitTo: 25 | orderBy: ['apellido', '-Nombre'] | filter:{Sueldo: '£':'hola'}:filtrarPorMoneda | limitTo: 1 |filter:{$:mifiltro, Nombre: Qnombre, apellido: Qapellido} as resultado"> -->
-	
-		<tr ng-repeat="producto in ListadoProductos |filter:{$:mifiltro, nombre: Qnombre,precio:Qprecio} as resultado"> 
-		<!-- <tr ng-repeat="producto in ListadoProductos"> -->
-					<td><img  class='fotoGrilla' ng-src="fotos/{{producto.foto}}" /></td>				
+		
+		  
+			
+		 
+		<!-- <tr ng-repeat="producto in ListadoProductos |filter:{$:mifiltro, nombre: Qnombre,precio:Qprecio} as resultado">  -->
+			<br><br>
+			<div class="scroll" id="style-2">
+			<div ng-repeat="producto in ListadoProductos |filter:{$:mifiltro, nombre: Qnombre,precio:Qprecio} as resultado" >
+				<div class="w3-card-4" style="width:40%">
+				<header class="w4-container w3-light-grey">
+				  <h4>{{producto.nombre}}</h4>
+				</header>
+				<div class="w4-container">
+				  <p>${{producto.precio}}</p>
+				  <hr>
+				   <img ng-src="fotos/{{producto.foto}}"  alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> 
+				  <p>{{producto.descripcion}}</p><br>
+				</div>
+				
+				<div ng-if="usuarioLogeado.tipo=='Cliente'"><button class="w3-button w3-block w3-dark-grey" name='Producto' ui-sref="verProducto({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto})" > Ver Producto </button></div>
+				<div ng-if="usuarioLogeado.tipo !=null">	<div ng-if="usuarioLogeado.tipo !='Cliente'">
+					<button class='w4-button w3-block w3-dark-grey' name='Borrar' ng-click="Borrar(producto)">Borrar</button> </div></div>
+					<div ng-if="usuarioLogeado.tipo !=null">	<div ng-if="usuarioLogeado.tipo !='Cliente'"> 
+					   <button class='w5-button w3-block w3-dark-grey' name='Modificar' ui-sref="modificarProducto({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto, tipo:producto.tipo})">Modificar</button></div></div>
+			  </div>
+			</div>
+			</div>
+
+			<div ng-if="resultado.length==0">		
+				
+				<div >No existen productos con esos datos</div></div>
+			  <br><br> <br><br>
+
+
+			  
+			<!-- <tr ng-repeat="producto in ListadoProductos"> -->
+					<!-- <td><img  class='fotoGrilla' ng-src="fotos/{{producto.foto}}" /></td>				
 						<td>{{producto.nombre}}</td>
 				<td>{{producto.stock}}</td>
 				<td>{{producto.codigo}}</td>
@@ -75,8 +139,8 @@ input[type=text]:focus {
 						<button class='btnModify' name='Modificar' ui-sref="modificarProducto({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto, tipo:producto.tipo})"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Modificar</button></a></td>
 				
 			       <td ng-if="usuarioLogeado.tipo=='Cliente'"><button class="but1" name='Producto' ui-sref="verProducto({id:producto.id, nombre:producto.nombre,descripcion:producto.descripcion, stock:producto.stock,precio:producto.precio, codigo:producto.codigo, foto:producto.foto})" > Ver Producto </button></td>
-				</tr>
-	</div>									
+				</tr> -->
+	<!-- </div>									 
 				<tr ng-if="resultado.length==0">		
 					<td></td>
 					<td>No existen productos con esos datos</td>
@@ -84,8 +148,165 @@ input[type=text]:focus {
 					<td></td>
 					<td></td>
 				</tr>
-			</table>
+			</table> -->
 		</div>
 	</div>
 </div>
+</div>
 
+
+
+<style>
+	
+	* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0px;
+
+}
+
+.s2 {
+  position: fixed;
+  height: 100px;
+  width: 100px;
+  background-color: transparent;
+ 
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.s1 {
+  position: fixed;
+  height: 100px;
+  width: 100px;
+
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: transparent;
+}
+
+.bigcon {margin-left: auto;
+    margin-right: auto;
+  position: fixed;
+  height: 95px;
+  width: 95px;
+ 
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  background-color: transparent;
+  animation: bigcon 2s infinite linear;
+  animation-delay: 0.25s;
+}
+
+.b {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.s {
+  width: 25px;
+  height: 25px;
+  animation: small 2s infinite ease;
+  box-shadow: 0px 2px rgba(0,0,0,0.3);
+   background-color: #8DC26F;
+}
+
+.s:nth-child(1) {
+  top: 0%;
+  left: 0%;
+}
+
+.s:nth-child(2) {
+  top: 0%;
+  right: 0%;
+}
+
+.s:nth-child(3) {
+  right: 0%;
+  bottom: 0%;
+}
+
+.s:nth-child(4) {
+  bottom: 0%;
+  left: 0%;
+}
+
+.big {
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  box-shadow:0px 0px 10px #54f7f8, 0px 0px 20px #54f7f8, 0px 0px 30px #54f7f8, 0px 0px 50px #54f7f8, 0px 0px 60px #54f7f8 ;
+  z-index: 1;
+  background-color:#8DC26F;
+  animation: bigball 1s infinite linear;
+}
+
+.sb1{
+  animation-delay: -1.75s;
+}
+.sb6{
+  animation-delay: -1.5s;
+}
+.sb2{
+  animation-delay: -1.25s;
+}
+.sb7{
+  animation-delay: -1s;
+}
+.sb3{
+  animation-delay: -0.75s;
+}
+.sb8{
+  animation-delay: -0.5s;
+}
+.sb4{
+  animation-delay: -0.25s;
+}
+.sb5{
+  animation-delay: -0s;
+}
+
+@keyframes bigcon {
+  0% {
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  100% {
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(405deg);
+  }
+}
+
+@keyframes small {
+  0% {
+    transform: scale(1);
+     background-color: #8DC26F;
+  }
+  10% {
+    transform: scale(1.3);
+    background-color: #8DC26F;
+  }
+  15% {
+    transform: scale(1);
+  }
+  25%{
+transform: scale(1);
+     background-color: #8DC26F;
+  }
+  100%{
+    transform: scale(1);
+     background-color: #0c0c0c;
+  }
+}
+	
+
+	</style>
+<style>
+	
+
+
+</style>
